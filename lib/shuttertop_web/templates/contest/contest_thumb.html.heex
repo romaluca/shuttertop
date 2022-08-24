@@ -1,0 +1,16 @@
+<%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest)), class: "contest-thumb-element" do %>
+    <%= if is_nil(@contest.upload) do %>
+        <div class="img-container empty">
+            <i class="icons icon-flags"></i>
+        </div>
+    <% else %>
+        <div class="img-container" style={"background-image: url('#{upload_url(@contest, :medium)}')"}></div>
+    <% end %>
+    <div class="content">
+        <h6 class="top-week"><%= gettext "Top week" %></h6>
+        <h3><%= @contest.name%></h3>
+        <div class="details">
+            <%= render "expiry_tag.html", contest: @contest %>
+        </div>
+    </div>
+<% end %>

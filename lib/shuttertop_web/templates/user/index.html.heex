@@ -1,0 +1,50 @@
+<div id="subnav">
+  <div class="container">
+    <ul class="nav nowrap">
+      <li class={"nav-item#{ if @params["order"] != "trophies", do: " active", else: "" }"}>
+        <%= live_patch gettext("Punti"), to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Index, country_id: @params["country_id"]), class: "nav-link" %>
+      </li>
+      <li class={"nav-item#{ if @params["order"] == "trophies", do: " active", else: "" }"}>
+        <%= live_patch gettext("Vittorie"), to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Index, order: "trophies", country_id: @params["country_id"]), class: "nav-link" %>
+      </li>
+      <li class="nav-item dropdown me-auto">
+        <a class="nav-link dropdown-toggle border-end-0" href="http://example.com" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= get_country_name @params["country_id"] %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= live_patch gettext("Tutti"), to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Index, order: @params["order"]), class: "dropdown-item" %>
+          <%= for {label, i} <- get_country_codes() do %>
+            <%= live_patch label, to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Index, order: @params["order"], country_id: to_string(i)), class: "dropdown-item" %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="users-container container">
+  <div class="row">
+     <div class="users-content">
+      <h1 class="d-none d-lg-block"><%= if @user_params[:order] == :trophies, do: gettext("Classifica trofei"), else: gettext("Classifica punti") %></h1>
+      <div class="col p-0">
+        <div class="photo-listrank">
+          <table class="table table-striped table-hover table-card">
+            <tbody>
+              <%= for { i, j } <- Enum.with_index(@users) do %>
+                  <%= render "user.html", user: i, position: (((@user_params[:page] || 1) - 1) * 30) + j + 1, conn: @socket, top_user: @top_user, params: @params %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <%= if !is_nil(@users) && @users.total_pages > 1 do %>
+        <div class="pages-container">
+          <% params = ShuttertopWeb.Helpers.PaginatorHelper.get_params(ShuttertopWeb.UserLive.Index,
+                &live_redirect/2, assigns[:params], ["order", "country_id"]) %>
+          <%= ShuttertopWeb.Helpers.PaginatorHelper.pagination_links(@socket, @users, params) %>
+        </div>
+        <% end %>
+      </div>
+     </div>
+    </div>
+
+  </div>
+<!--</div>-->

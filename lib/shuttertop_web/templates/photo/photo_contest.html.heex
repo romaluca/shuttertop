@@ -1,0 +1,13 @@
+<div class="card photo-block photo-element" data-id={@photo.id}>
+	  <div class="card-body">
+    	<p class="header contest">
+    	    <%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, @photo.contest) do %>
+				<span class="thumb">
+					<%= img_tag(upload_url(@photo.contest, :thumb), loading: "lazy", class: "category back#{@photo.contest.category_id}") %>
+				</span>
+				<%= @photo.contest.name %>
+			<% end %>
+    	</p>
+  	</div>
+    <%= render "photo_content.html", photo: @photo, conn: @conn, current_user: @current_user %>
+</div>

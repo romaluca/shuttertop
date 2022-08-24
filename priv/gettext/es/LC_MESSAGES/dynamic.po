@@ -1,0 +1,140 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: es\n"
+
+msgid "activity.action.0"
+msgstr ""
+
+msgid "activity.myaction.0"
+msgstr ""
+
+msgid "activity.action.1"
+msgstr ""
+
+msgid "activity.myaction.1"
+msgstr ""
+
+msgid "activity.action.2"
+msgstr ""
+
+msgid "activity.myaction.2"
+msgstr ""
+
+msgid "activity.action.3"
+msgstr ""
+
+msgid "activity.myaction.3"
+msgstr ""
+
+msgid "activity.action.4"
+msgstr ""
+
+msgid "activity.myaction.4"
+msgstr ""
+
+msgid "activity.action.5"
+msgstr ""
+
+msgid "activity.myaction.5"
+msgstr ""
+
+msgid "activity.action.6"
+msgstr ""
+
+msgid "activity.myaction.6"
+msgstr ""
+
+msgid "activity.action.7"
+msgstr ""
+
+msgid "activity.myaction.7"
+msgstr ""
+
+msgid "activity.action.8"
+msgstr ""
+
+msgid "activity.myaction.8"
+msgstr ""
+
+msgid "activity.action.9"
+msgstr ""
+
+msgid "activity.myaction.9"
+msgstr ""
+
+msgid "activity.action.10"
+msgstr ""
+
+msgid "activity.myaction.10"
+msgstr ""
+
+msgid "category.0"
+msgstr ""
+
+msgid "category.1"
+msgstr ""
+
+msgid "category.2"
+msgstr ""
+
+msgid "category.3"
+msgstr ""
+
+msgid "category.4"
+msgstr ""
+
+msgid "category.5"
+msgstr ""
+
+msgid "category.6"
+msgstr ""
+
+msgid "category.7"
+msgstr ""
+
+msgid "category.8"
+msgstr ""
+
+msgid "%{user_name} ha creato il contest %{contest_name}"
+msgstr ""
+
+msgid "%{user_name} ha inserito una foto in %{contest_name}"
+msgstr ""
+
+msgid "%{user_name} ha votato la tua foto in %{contest_name}"
+msgstr ""
+
+msgid "%{user_name} ha commentato %{contest_name}"
+msgstr ""
+
+msgid "%{user_name} segue il tuo contest %{contest_name}"
+msgstr ""
+
+msgid "%{user_name} ti segue"
+msgstr ""
+
+msgid "Il tuo amico %{user_name} si è iscritto"
+msgstr ""
+
+msgid "%{user_name} ha vinto %{contest_name}"
+msgstr ""
+
+msgid "Hai vinto %{contest_name}"
+msgstr ""
+
+msgid "Foto in %{contest_name}"
+msgstr ""
+
+msgid "%{user_name} ti ha scritto"
+msgstr ""
+
+msgid "Contest in corso"
+msgstr ""

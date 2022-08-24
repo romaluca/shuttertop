@@ -1,0 +1,84 @@
+<div class="edit-contest-container container">
+	<div class="row">
+    	<div class="col-lg-8 col-sm-11 col-12 mx-auto page-content">
+        <.form let={f} for={@changeset} phx-change="validate"  phx-submit="save" class="m-x-auto" id="contest-form">
+    		<div class="card ">
+    			<div class="card-header">
+			    	<h1><%= @title %></h1>
+			    </div>
+			    <div class="card-body">
+              <%= if @changeset.action do %>
+                <div class="">
+                  <p><%= gettext "Orca zozza, c'è qualcosa che non va! Controlla gli errori qui sotto." %></p>
+                </div>
+              <% end %>
+              <%= if is_nil(@changeset.data.contest_id) do %>
+              <div class="form-group">
+                <%= label f, :name, class: "control-label" %>
+                <%= text_input f, :name, autofocus: true, placeholder: gettext("es. tipi da spiaggia"), class: "form-control" %>
+                <%= error_tag f, :name %>
+              </div>
+              <% else %>
+                <%= hidden_input f, :name  %>
+                <%= error_tag f, :name %>
+              <% end %>
+              <div class={"form-group #{if @changeset.data.id != nil, do: " d-none", else: "" }"}>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <%= radio_button(f, :expiry_days, 1, class: "form-check-input") %>
+                    <%= gettext("dura 1 settimana") %>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <%= radio_button(f, :expiry_days, 2, class: "form-check-input") %>
+                    <%= gettext("dura 2 settimane") %>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <%= radio_button(f, :expiry_days, 3, class: "form-check-input") %>
+                    <%= gettext("dura 1 mese") %>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <%= radio_button(f, :expiry_days, 0, class: "form-check-input") %>
+                    <%= gettext("dura quanto mi pare") %>...
+                  </label>
+                </div>
+                <%= error_tag f, :expiry_days %>
+              </div>
+              <div class="form-group" id="expiryAtContainer"
+                   style={if (Ecto.Changeset.get_field(@changeset, :expiry_days) != 0), do: "display:none"}>
+                <%= label f, :expiry_at, class: "control-label" %>
+                <%= date_input f, :expiry_at, class: "form-control",  min: Timex.today  %>
+                <%= error_tag f, :expiry_at %>
+              </div>
+
+              <div class="form-group">
+                <%= label f, :category_id, class: "control-label" %>
+                <%= select f, :category_id, Enum.map(0..8, fn k -> {translate("category.#{k}"), k} end), class: "form-control" %>
+                <%= error_tag f, :category_id %>
+              </div>
+
+              <div class="form-group">
+                <%= label f, :description, class: "control-label" %>
+                <%= textarea f, :description, class: "form-control" %>
+                <%= error_tag f, :description %>
+              </div>
+              <%= hidden_input f, :contest_id  %>
+
+              <div class="form-group text-center">
+
+              </div>
+			    </div>
+          <div class="card-footer text-end">
+            <%= live_redirect gettext("Annulla"), to: Routes.live_path(@socket, ShuttertopWeb.ContestLive.Index), class: "btn" %>
+            <%= submit gettext("Salva"), class: "btn btn-primary" %>
+          </div>
+		    </div>
+        </.form>
+		  </div>
+    </div>
+</div>

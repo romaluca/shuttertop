@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-6 m-auto page-content">
+      <.form let={f} for={@changeset}  phx-submit="save" class="login mx-auto" id="editUser">
+      <div class="card p-0">
+        <div class="card-header"><h1><%= gettext "modifica il profilo" %></h1></div>
+        <div class="card-body">
+
+          <div class="form-group">
+            <%= label f, :name, class: "control-label" %>
+            <%= text_input f, :name, autofocus: true, placeholder: gettext("nome di battaglia"), class: "form-control" %>
+            <%= error_tag f, :name %>
+          </div>
+          <div class="form-group">
+            <%= label f, :email, class: "control-label" %>
+            <%= text_input f, :email, autofocus: true, placeholder: gettext("es. tipi da spiaggia"), class: "form-control" %>
+            <%= error_tag f, :email %>
+          </div>
+          <div class="form-group">
+              <%= label f, :country_code, class: "control-label" %>
+              <%= select f, :country_code, Enum.map(Enum.reverse(Countries.all), fn c -> { c.name, to_string(c.alpha2) } end), class: "form-control", prompt: gettext("Scegli il tuo paese") %>
+          </div>
+          <div class="form-group">
+              <%= label f, :language, class: "control-label" %>
+              <%= select f, :language, ["English": "en", "Italiano": "it"],
+                    class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <div class="custom-control custom-switch">
+              <%= checkbox f, :notifies_enabled, class: "custom-control-input", id: "mailNotifications" %>
+              <%= label f, :notifies_enabled, gettext("Notifica email contest della settimana"), class: "custom-control-label", for: "mailNotifications" %>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block btn-login mt-5"><%= gettext "Salva" %></button>
+        </div>
+      </div>
+      </.form>
+    </div>
+  </div>
+</div>

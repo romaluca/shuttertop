@@ -1,0 +1,8 @@
+<%= form_for @changeset, "#", [phx_submit: :save, class: "form-photo", id: "form-photo", phx_hook: "PhotoForm"], fn f -> %>
+    <div class="input-group">
+        <%= text_input f, :name, placeholder: gettext("Dai un nome alla tua foto"), class: "form-control", maxlength: 100 %>
+        <span class="input-group-btn">
+            <%= submit Gettext.gettext(ShuttertopWeb.Gettext, "save"), phx_disable_with: Gettext.gettext(ShuttertopWeb.Gettext, "Saving..."), class: "btn btn-secondary" %>
+        </span>
+    </div>
+<% end %>

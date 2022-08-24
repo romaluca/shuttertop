@@ -1,0 +1,104 @@
+<% conn = @socket || @conn %>
+<% user_has_photos = (!is_nil(@photos_user) && @photos_user.total_entries > 0) %>
+<div class="container summary">
+    <%= if is_nil(@contest.winner_id) && @contest.photos_count > 0 do %>
+    <div class="row">
+        <div class="col-12">
+            <%= render(ShuttertopWeb.PhotoView, "photo_roll.html", entity: @contest,
+                        photos: @photos, conn: conn, current_user: @current_user) %>
+        </div>
+    </div>
+    <% end %>
+    <div class="row row-eq-height">
+        <div class={"col-lg-4 order-lg-2 right-bar-lg#{if !is_nil(@contest.winner_id), do: " order-2"}"}>
+            <%= if !user_has_photos, do: render("created_by.html", contest: @contest, conn: conn, mini: true) %>
+            <%= if user_has_photos do %>
+            <div class="card">
+                <div class="card-header"><h2><%= gettext "Tu" %></h2></div>
+                <div class="in-progress-container">
+                    <div>
+                        <%= for i <- @photos_user do %>
+                            <%= link to: "/contests/#{slug_path(@contest)}/photos/my/#{i.id}", class: "in_progress_element" do %>
+                                <div>
+                                    <%= img_tag(upload_url(i, :thumb), loading: "lazy", width: "99", height: "99") %>
+                                    <div class="stat"><i class="icons heart_circle"></i> <%= i.votes_count %>&nbsp;&nbsp;<i class="icons grid_circle"></i> <%= i.position %></div>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+            <%= if user_has_photos, do: render("created_by.html", contest: @contest, conn: conn, mini: true) %>
+            <div class="card card-comments">
+                <div class="card-header with-icon"><i class="icons pencil-circle"></i><h2><%= gettext "discussione" %></h2></div>
+                <div class="card-body pb-0">
+                    <.live_component
+                        module={ShuttertopWeb.Components.Chat}
+                        current_user={@current_user}
+                        entity={@contest}
+                        page_id="contestPage"
+                        topic={@topic}
+                        id={"contest-comment-#{@contest.id}"} />
+                </div>
+            </div>
+            <%= if (@contest.followers_count > 0) do %>
+                <div class="container pt-sm-3">
+                    <%= render(ShuttertopWeb.UserView, "followers.html", users: @followers, conn: conn,
+                        show_more: if(@contest.followers_count > 8, do: Routes.live_path(conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest), section: "followers"), else: nil)) %>
+                </div>
+            <% end %>
+        </div>
+        <div class={"left-bar col-lg-8 order-lg-1#{if !is_nil(@contest.winner_id), do: " order-1"}"}>
+            <div class="card">
+                <div class="card-header with-icon"><i class="icons grid_circle"></i><h2><%= gettext "Classifica" %></h2></div>
+                <div>
+                    <%= if is_nil(@leaders) || @leaders.entries == [] do %>
+                        <div class="desc-empty-container pt-2">
+                            <i class="icons podium"></i><br />
+                            <%= gettext("Non ci sono contendenti") %>
+                        </div>
+                    <% else %>
+                        <%= for i <- @leaders do %>
+                            <%= if !is_nil(@contest.winner_id) && i.id == @contest.winner_id do %>
+                               <%= render ShuttertopWeb.CommonView, "winner.html",
+                                    photo: i, contest: @contest, current_user: @current_user, conn: conn,
+                                    photo_link: true %>
+                            <% else %>
+                                <%= render ShuttertopWeb.PhotoView, "photo_rank.html",
+                                    photo: i, conn: conn, current_user: @current_user, contest: @contest %>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                </div>
+                <%= if @contest.photos_count > 3 do %>
+                <div class="card-footer more">
+                    <%= live_redirect gettext("Visualizza tutti"), to: Routes.live_path(conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest), section: "rank") %>
+                </div>
+                <% end %>
+            </div>
+            <%= unless is_nil(@contest.winner_id) do %>
+                <%= render(ShuttertopWeb.PhotoView, "photo_roll.html", entity: @contest,
+                            photos: @photos, conn: conn, current_user: @current_user) %>
+            <% end %>
+
+
+        </div>
+
+    </div>
+    <!--
+    <div class="row row-eq-height">
+        <div class="col card p-3 mt-3">
+            <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-6o+ee+1c-3o+4q"
+             data-ad-client="ca-pub-3629337656411099"
+             data-ad-slot="6982729724"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        </div>
+    </div>
+    -->
+</div>

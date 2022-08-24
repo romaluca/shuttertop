@@ -1,0 +1,15 @@
+<div class="edit-contest-container container">
+	<div class="row">
+    	<div class="col-lg-8 col-sm-11 col-12 mx-auto page-content">
+    		<div class="card">
+	    		<div class="card-header">
+			    	<h1><%= gettext "Modifica %{name}", name: @contest.name %></h1>
+			    </div>
+			    <div class="card-body">
+				    <%= render "form.html", assigns %>
+				    <%= live_redirect gettext("indietro"), to: Routes.live_path(@socket, ShuttertopWeb.ContestLive.Index), class: "d-block text-center" %>
+			    </div>
+		    </div>
+		</div>
+	</div>
+</div>

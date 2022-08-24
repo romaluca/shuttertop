@@ -1,0 +1,12 @@
+<div class="card photo-block photo-element" data-id={@photo.id}>
+	  <div class="card-body">
+	  	<div class="header user">
+			<%= img_tag(upload_url(@photo.user, :thumb), loading: "lazy", class: "user-img") %>
+			<%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.UserLive.Show, slug_path(@photo.user)) do %>
+				<%= @photo.user.name %>
+			<% end %>
+			<span class="position">#<%= @photo.position %></span>
+		</div>
+  	</div>
+    <%= render "photo_content.html", photo: @photo, conn: @conn, current_user: @current_user %>
+</div>

@@ -1,0 +1,58 @@
+<div>
+  <div class="d-flex">
+    <div><h2>Utenti</h2></div>
+    <div class="ms-auto p-2">
+      <%= if @selected do %>
+      <%= form_for :user, "#", [phx_change: :set_type, class: "user-type", phx_target: @myself], fn f -> %>
+          <%= select(f, :type, ["Normal": "0", "Tester": "1", "Admin": "2", "Newbie": "3" ], prompt: "Tipo") %>
+      <% end %>
+      <button phx-click="reset_upload" phx-target={@myself} id="admin-users-reset-upload" class="btn btn-link">
+          <i class="icons user-circle"></i>
+      </button>
+      <% end %>
+      <button phx-click="prev_page" phx-target={@myself} id="admin-users-prev-page" class="btn btn-link">
+          <i class="icons prev"></i>
+      </button>
+      <button phx-click="next_page" phx-target={@myself} id="admin-users-next-page" class="btn btn-link">
+          <i class="icons next"></i>
+      </button>
+    </div>
+  </div>
+  <table class="table table-striped table-hover" phx-hook="Lazyload" id="admin-users-table">
+      <tbody>
+      <%= for i <- @authorizations do %>
+          <tr phx-click="select" phx-target={@myself} phx-value-id={i.user.id}
+              class={if @selected == i.user.id, do: "selected"} id={"admin-user-#{i.user.id}"}>
+              <td style="width: 65px"><%= img_tag(upload_url((i.user), :thumb), loading: "lazy", class: "photo-img", height: "40", width: "40") %></td>
+              <td>
+                  <%= live_redirect i.user.name, to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Show, slug_path(i.user)) %><br />
+                  <%= for j <- i.user.devices do %>
+                      <div><span class="platform"><%= j.platform %></span> <span class="updated_at"><%= Timex.format!(j.updated_at, "%H:%M %d/%m", :strftime) %></span></div>
+                  <% end %>
+                  <%= unless i.user.is_confirmed, do: "non confermato" %>
+              </td>
+              <td>
+                  <% type = case i.user.type do
+                        1 ->
+                          "tester"
+                        2 ->
+                          "admin"
+                        3 ->
+                          "newbie"
+                        _ ->
+                          nil
+                  end %>
+                  <%= if type do %>
+                      <span class="type"><%= type %></span>
+                  <% end %>
+                  <%= if i.provider == "facebook" || i.provider == "google" do %>
+                    <%= link String.at(i.provider, 0), to: get_provider_url(i), class: "provider #{i.provider}" %>
+                  <% else %>
+                    <span class={"provider #{i.provider }"} title={i.uid}><%= String.at(i.provider, 0) %></span>
+                  <% end %>
+                </td>
+          </tr>
+      <% end %>
+      </tbody>
+  </table>
+</div>

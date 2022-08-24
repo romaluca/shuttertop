@@ -1,0 +1,26 @@
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:middle;" width="100%">
+    <tr>
+      <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+        <div style="font-family:open Sans Helvetica, Arial, sans-serif;font-size:18px;line-height:24px;text-align:left;color:#ffffff;"><span style="color:#666">
+        <%= gettext("Ciao %{username}", username: @username) %>, </span></div>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+        <div style="font-family:open Sans Helvetica, Arial, sans-serif;font-size:18px;line-height:24px;text-align:left;color:#666666;">
+        <%= gettext("Grazie per la registrazione! Siamo felici di averti a bordo. Per favore clicca il bottone qui sotto per confermare il tuo account") %></div>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;padding-top:25px;word-break:break-word;">
+        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
+          <tr>
+            <td align="center" bgcolor="#222222" role="presentation" style="border:none;border-radius:10px;cursor:auto;mso-padding-alt:10px 25px;background:#222222;" valign="middle">
+              <a href={ @url } style="display:inline-block;background:#222222;color:#ffffff;font-family:open Sans Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:10px;" target="_blank">
+              <%= gettext("Conferma l'account") %> </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>

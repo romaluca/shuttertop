@@ -1,0 +1,17 @@
+---
+    - hosts: 127.0.0.1
+      connection: local
+      gather_facts: no
+    
+      tasks:
+        - name: Remove file shuttertop_build.tar
+          file:
+            path: "{{ local_build_dir }}/shuttertop_build.tar"
+            state: absent
+
+        - name: Build  docker image
+          docker_image:
+             path: ../../../
+             name: shuttertop/website:latest
+             archive_path: "{{ local_build_dir }}/shuttertop_build.tar"
+             force: yes

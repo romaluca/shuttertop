@@ -1,0 +1,41 @@
+<% url = Routes.live_path(@conn, ShuttertopWeb.PhotoLive.Slide, "contests", slug_path(@contest), "top", @photo.id) %>
+<%= link to: url, class: "win-content" do %>
+    <div class="photo-container">
+        <div class="winner-title">
+            <%= if is_nil(assigns[:photo_link]) do %>
+                <div class="contest"><%= @contest.name %></div>
+            <% else %>
+            <div class="user">
+                <%= img_tag upload_url(@photo.user, :thumb), loading: "lazy", class: "user-img" %>
+                <span><%= @photo.user.name %></span>
+            </div>
+            <% end %>
+            <div class="winner">winner</div>
+        </div>
+        <div class="photo-wrap">
+            <%= img_tag upload_url(@photo, :normal), loading: "lazy",
+                    style: "max-width: 100%; max-height: 600px;" %>
+            <div class="d-flex flex-row">
+                <div class="votes me-auto">
+                    <i class="icons heart_circle"></i>
+                    <span class="votes"><%= @photo.votes_count %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
+<%= if is_nil(assigns[:photo_link]) do %>
+<div class="container buttons">
+  <div class="row">
+    <%= link to: url, class: "col-6" do %>
+      <i class="icons comment"></i>
+      <%= gettext "commenta" %>
+    <% end %>
+    <a href="#" class="col-6" phx-click="show-modal" phx-value-type="share" id={"shareActivity#{@activity.id}"}
+  	  phx-value-url={url}>
+  	  <i class="icon-share"></i>
+      <%= gettext "condividi" %>
+  	</a>
+  </div>
+</div>
+<% end %>

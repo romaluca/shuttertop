@@ -1,0 +1,35 @@
+<div class="container">
+	<div class="row">
+    	<div class="col-lg-8 col-sm-11 col-12 mx-auto page-content">
+			<%= form_for :contact, "#", [phx_submit: :save,  phx_hook: "GooglereCAPTCHA", class: "card-body", id: "form-contact"], fn f -> %>
+			<div class="card">
+				<div class="card-header">
+					<h1><%= gettext "Contattaci" %></h1>
+				</div>
+				<div class="card-body p-lr-075">
+
+					<%# form_for @socket, Routes.page_index_path(@socket, :contact), [as: :contact, class: "card-body" ], fn f -> %>
+							<div class="form-group">
+									<%= label f, :name, class: "control-label" %>
+											<%= text_input f, :name, type: "name", class: "form-control", placeholder: gettext("Dicci il tuo nome") %>
+									</div>
+							<div class="form-group">
+									<%= label f, :email, class: "control-label" %>
+											<%= text_input f, :email, type: "email", class: "form-control", placeholder: gettext("Inserisci la tua email"), aria: [ describedby: "emailHelp" ] %>
+											<small id="emailHelp" class="form-text text-muted"><%= "We'll never share your email with anyone else." %></small>
+							</div>
+							<div class="form-group">
+									<%= label f, :description, class: "control-label" %>
+									<%= textarea f, :description, class: "form-control", rows: "5" %>
+							</div>
+							<div phx-update="ignore" id="recaptchaContainer">
+								<%= raw Recaptcha.Template.display() %>
+							</div>
+							<%= submit gettext("Invia"), class: "btn btn-block btn-primary mt-5" %>
+
+				</div>
+				</div>
+				<% end %>
+		</div>
+	</div>
+</div>

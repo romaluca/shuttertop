@@ -1,0 +1,26 @@
+<div class="contest_content">
+    <%= render ShuttertopWeb.ContestView, "contest_activity_thumb.html", contest: @activity.contest, conn: @conn %>
+</div>
+<div class="container buttons">
+  <div class="row">
+    <% cols = if((@activity.contest.user_photo || @activity.contest.is_expired), do: "6", else: "4") %>
+    <div class={"col-#{cols} contest-follow-btn element clickable"}>
+  	<.live_component
+            module={ShuttertopWeb.Components.Follow}
+            current_user={@current_user}
+            entity={@activity.contest}
+            id={"activity-#{@activity.id}-contest-follow-#{@activity.contest.id}"} />
+    </div>
+    <%= if !(@activity.contest.user_photo || @activity.contest.is_expired) do %>
+      <%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@activity.contest)), class: "col-4" do %>
+        <i class="icons camera-outline"></i>
+        <%= gettext "partecipa" %>
+      <% end %>
+    <% end %>
+  	<a href="#" class={"col-#{cols}"} phx-click="show-modal" phx-value-type="share" id={"shareActivity#{@activity.id}"}
+  	  phx-value-url={Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@activity.contest))}>
+  	  <i class="icon-share"></i>
+      <%= gettext "condividi" %>
+  	</a>
+  </div>
+</div>

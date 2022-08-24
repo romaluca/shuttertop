@@ -1,0 +1,43 @@
+<div class={"card #{ if is_nil(assigns[:mode_widget]), do: "", else: " #{assigns[:col]}" } followers"}>
+  <%= if is_nil(assigns[:hide_header]) do %>
+  <div class="card-header with-icon"><i class="icons book-circle"></i><h2><%= if is_nil(assigns[:follows]), do: gettext("Followers"), else: gettext("Chi segue") %></h2></div>
+  <% end %>
+  <%= if is_nil(@users) || @users.entries == [] do %>
+    <div class="card-body p-lg-0">
+        <div class="desc-empty-container pt-2">
+            <i class="icons follow"></i><br>
+            <%= if is_nil(assigns[:follows]), do: gettext("Non desta interesse"), else: gettext("Non presta interesse") %>
+        </div>
+    </div>
+  <% else %>
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="row">
+        <%= for user <- @users do %>
+          <%= live_redirect to: Routes.live_path(@conn,  ShuttertopWeb.UserLive.Show, slug_path(user)),
+              class: "col-4 col-sm-#{if is_nil(assigns[:mode_widget]), do: 3, else: 4} follower p-3" do %>
+            <div>
+              <%= img_tag upload_url(user, :thumb_small), loading: "lazy", class: "user-img" %>
+            </div>
+            <div class="name"><%= user.name %></div>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+    <%= if is_nil(assigns[:mode_widget]) do %>
+      <%= if !is_nil(@users) && @users.total_pages > 1 do %>
+      <div class="pages-container">
+          <%= ShuttertopWeb.Helpers.PaginatorHelper.pagination_links(@conn, @users) %>
+      </div>
+      <% end %>
+    <% else %>
+      <%= if !is_nil(@show_more) do %>
+        <div class="card-footer more">
+            <%= link gettext("Visualizza tutti"),
+                  to: @show_more %>
+        </div>
+    <% end %>
+  <% end %>
+</div>

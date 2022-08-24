@@ -1,0 +1,13 @@
+---
+create_user: roma
+app_name: shuttertop
+username: roma
+project_name: shuttertop
+domain: shuttertop.com
+copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+sys_packages: [ 'curl', 'vim', 'git', 'ufw', 'python3-pip']
+pg_packages: ['postgresql', 'postgresql-server', 'postgresql-contrib',]
+admin_email: "{{ secret_admin_email }}"
+db_user: romadb
+db_password: 8starchild2
+db_name: shuttertop_prod

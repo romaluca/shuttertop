@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-lg-6 page-content">
+			<div class="card">
+				<div class="card-header">
+					<h1><%= gettext "Messaggi" %></h1>
+				</div>
+				<div id="topicList">
+					<%= for i <- @topics do %>
+							<%= render "topic.html", topic: i, conn: @conn, current_user: @current_user %>
+					<%  end %>
+					<%= if !is_nil(@topics) && @topics.total_pages > 1 do %>
+						<div class="pages-container">
+
+							<%= ShuttertopWeb.Helpers.PaginatorHelper.pagination_links(@conn, @topics) %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-lg-6 right-bar-comments">
+			<%= if !is_nil(@topics) && @topics.total_entries > 0 do %>
+				<% topic = List.first(@topics.entries)
+				   entity =	get_topic_element(topic, @current_user) %>
+				<.live_component
+					module={ShuttertopWeb.Components.Chat}
+					current_user={@current_user}
+					entity={entity}
+					topic={topic}
+					id={"elementComment-#{entity.id}"} />
+	        <% end %>
+		</div>
+    </div>
+</div>

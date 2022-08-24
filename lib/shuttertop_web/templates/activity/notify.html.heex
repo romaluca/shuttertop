@@ -1,0 +1,13 @@
+<%= link to: get_activity_path(@conn, @notify),  class: "notify card-body", id: "notify-#{@notify.id}"  do %>
+    <div class="d-flex flex-row">
+        <div class="me-3">
+            <%= img_tag upload_url(@notify.user, :thumb_small), loading: "lazy", class: "user-img" %>
+        </div>
+        <div class="me-auto d-flex flex-column content">
+            <div class="user"><%= get_activity_text(@notify, @current_user) |> raw() %>
+            </div>
+            <div><span class="created_at" data-at={Timex.Timezone.convert(@notify.updated_at, "Etc/UTC")}><%= Timex.from_now(@notify.updated_at, locale()) %></span></div>
+        </div>
+        <%= if @notify.photo, do: img_tag(upload_url(@notify.photo, :thumb), loading: "lazy", class: "photo-img me-2"), else: "" %>
+    </div>
+<% end %>

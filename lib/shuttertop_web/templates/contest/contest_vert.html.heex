@@ -1,0 +1,45 @@
+<div class={assigns[:class] || "col-sm-6 col-md-4 col-lg-3"}>
+    <%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest)) do %>
+      <div class="contest-vert-element">
+        <div class="d-flex d-sm-block">
+            <%= if is_nil(@contest.upload) do %>
+                <div class="img-container empty">
+                    <i class="icon-flags"></i>
+                </div>
+            <% else %>
+                <div class="img-container" style={"background-image: url('#{upload_url(@contest, :thumb)}')"}></div>
+            <% end %>
+
+            <div class="content">
+                <div class="d-flex user">
+                    <%= img_tag upload_url(@contest.user, :thumb_small), loading: "lazy", class: "user-img me-2" %>
+                    <div class="info">
+                        <div class="name"><%= @contest.user.name %></div>
+                        <div class="stats">
+                            <%= gettext "Fotografo di livello %{level}", level: @contest.user.level %>
+                        </div>
+                    </div>
+                </div>
+                <%= if Ecto.assoc_loaded?(@contest.events) && length(@contest.events) > 0 do %>
+                    <span class="top-week"><%= gettext "Top week" %></span>
+                <% end %>
+                <h5 class="name"><%= @contest.name%></h5>
+                <div class="details d-sm-block d-none">
+                    <i class="icons camera"></i> <span><%=  @contest.photos_count %></span>
+                    <%= if @contest.photographers_count != @contest.photos_count do %>
+                    <span class="users">(<%= ngettext "1 partecipante", "%{photos} partecipanti", @contest.photographers_count, photos: @contest.photographers_count %>)</span>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="details2">
+            <div class="details d-sm-none d-block">
+                    <i class="icons camera"></i> <span><%=  @contest.photos_count %></span>
+            </div>
+            <div class="expiry-container ms-auto">
+                    <%= render "expiry_tag.html", contest: @contest %>
+            </div>
+        </div>
+      </div>
+  <% end %>
+</div>

@@ -1,0 +1,52 @@
+---
+- name: Remove file shuttertop_build.tar
+  file:
+    path: "{{ local_build_dir}}/shuttertop_build.tar"
+    state: absent
+
+- name: Remove file docker.env
+  file:
+    path: "{{ releases_dir }}/docker.env"
+    state: absent
+
+- name: Copy archived image
+  copy:
+    src: "{{ local_build_dir}}/shuttertop_build.tar"
+    dest: ./shuttertop_build.tar
+
+- name: template env file
+  template:
+    src: docker.env.j2
+    dest: "{{ releases_dir }}/docker.env"
+    mode: 0644
+
+- name: load container from tarball
+  docker_image:
+    name: shuttertop/website
+    load_path: ./shuttertop_build.tar
+    state: present
+    source: load
+    force_source: yes
+
+- name: ensure a container is running
+  docker_container:
+    name: shuttertop
+    state: started
+    image: "shuttertop/website:latest"
+    network_mode: host
+    #pull: true
+    restart_policy: always
+    env_file: "{{ releases_dir }}/docker.env"
+
+- name: Run migrations
+  command: docker exec -it shuttertop sh -lc "bin/{{ app_name }} eval Shuttertop.Release.migrate"
+  when: inventory_hostname == play_hosts[0]
+
+- name: Remove file shuttertop_build.tar
+  file:
+    path: "./shuttertop_build.tar"
+    state: absent
+
+- name: Docker image prune
+  docker_prune:
+    images: yes

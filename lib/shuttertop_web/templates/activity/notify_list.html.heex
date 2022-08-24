@@ -1,0 +1,14 @@
+<div phx-update="append" id="notifies" class="activities-list">
+<%= for i <- @notifies do %>
+    <%= render ShuttertopWeb.ActivityView, "notify.html", notify: i, conn: @conn, current_user: @current_user %>
+<% end %>
+</div>
+<%= if @notifies.more do %>
+    <div class="card-footer text-center">
+        <form phx-submit="load-more" >
+            <button phx-disable-with="loading..." class="btn btn-primary-outline main-btn-outline-mini more-activities">
+                <%= gettext "Visualizza di più" %>
+            </button>
+        </form>
+    </div>
+<% end %>

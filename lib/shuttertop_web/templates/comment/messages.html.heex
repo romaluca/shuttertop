@@ -1,0 +1,54 @@
+<% topic_id = if is_nil(@topic), do: nil, else: @topic.id %>
+<div class="container chat-page" id={"chatContainer-#{ topic_id }"} data-id={ topic_id } phx-hook="TopicsUpdate">
+	<div class="row">
+		<div class="col-12 col-lg-6 page-content pt-0">
+			<div class="card">
+				<div class="card-header">
+					<h1><%= gettext "Messaggi" %></h1>
+				</div>
+				<%= if @no_messages do %>
+					<div class="card-body">
+						<div class="desc-empty-container pt-2">
+							<i class="icons comment_fill"></i><br />
+							<div class="pt-2"><%= gettext "Nessun messaggio trovato." %></div>
+						</div>
+					</div>
+				<% end %>
+				<div id="topicList">
+					<%= for i <- @topics do %>
+						<%= Phoenix.View.render ShuttertopWeb.CommentView, "topic.html", topic: i, conn: @socket, current_user: @current_user %>
+					<% end %>
+			    </div>
+			</div>
+
+		</div>
+		<div class="col-12 col-lg-6 right-bar-comments">
+			<%= if !is_nil(@topic) do %>
+			<%
+			   entity =	get_topic_element(@topic, @current_user)
+			   upload_url = upload_url(get_topic_entity_object(@topic, @current_user), :thumb_small) %>
+			    <div class="topic-header card-header d-flex flex-row">
+			        <div class="me-auto">
+			            <h2><%= link get_topic_name(@socket, @topic, @current_user), to: get_topic_path(@socket, @topic, @current_user) %></h2>
+			        </div>
+			        <div>
+
+			        <%= if is_nil(upload_url) do %>
+						<i class="icon-flags"></i>
+					<% else %>
+						<%= img_tag upload_url, loading: "lazy",
+			        		class: "#{ if is_nil(@topic.photo || @topic.contest), do: "user-img"}" %>
+					<% end %>
+			        </div>
+			    </div>
+				<.live_component
+					module={ShuttertopWeb.Components.Chat}
+					current_user={@current_user}
+					entity={entity}
+					page_id={assigns.body_id}
+					topic={@topic}
+					id={"elementComment-#{entity.id}"} />
+	        <% end %>
+		</div>
+    </div>
+</div>

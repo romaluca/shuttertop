@@ -1,0 +1,20 @@
+<% user = get_topic_last_user(@topic, @current_user) %>
+<%= live_patch to: Routes.live_path(@conn, ShuttertopWeb.CommentLive.Messages, @topic.id),  class: "topic card-body", id: "topic-#{@topic.id}" do %>
+    <div class="d-flex flex-row">
+        <div class="me-3">
+            <%= img_tag upload_url(user, :thumb_small), loading: "lazy", class: "user-img" %>
+        </div>
+        <div>
+            <div class="user">
+                <%= user.name %>
+            </div>
+            <div><span class="created_at" data-at={  Timex.Timezone.convert(@topic.last_comment.updated_at, "Etc/UTC") }><%= Timex.from_now(@topic.last_comment.updated_at, locale()) %></span></div>
+        </div>
+        <div class="me-auto ms-3 body-container">
+            <div class="body"><%= @topic.last_comment.body %></div>
+            <%= unless is_nil(@topic.photo || @topic.contest) do %>
+            <div class="subbody"><i class={"topic-icon icons #{ get_topic_icon(@topic) } me-2"}></i><span class="topic-name"><%= get_topic_name(@conn, @topic, @current_user) %></span></div>
+            <% end %>
+        </div>
+    </div>
+<% end %>

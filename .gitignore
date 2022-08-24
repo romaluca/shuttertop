@@ -1,0 +1,22 @@
+# App artifacts
+/_build
+/db
+/deps
+/*.ez
+/.c9/
+/.c9
+/.vscode
+# Generated on crash by the VM
+erl_crash.dump
+/doc/
+
+# Static artifacts
+/priv/static/assets/
+/assets/node_modules
+.elixir_ls
+.deliver/releases/
+npm-debug.log
+/config/*.secret.exs
+/config/apple_id.ex
+shuttertop-*.tar
+/.env

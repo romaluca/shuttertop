@@ -1,0 +1,69 @@
+<div id="subnav">
+  <div class="container">
+    <ul class="nav nowrap">
+      <li class={"nav-item#{if (is_nil(@params["order"]) and is_nil(@params["expired"])), do: " active", else: ""} "}>
+        <%= live_patch gettext("novità"), to: Routes.live_path(@socket, ShuttertopWeb.ContestLive.Index), class: "nav-link" %>
+      </li>
+      <li class={"nav-item#{if (@params["order"] == "top"), do: " active", else: "" }"}>
+        <%= live_patch gettext("i migliori"), to: Routes.live_path(@socket, ShuttertopWeb.ContestLive.Index, order: "top"), class: "nav-link" %>
+      </li>
+      <li class={"nav-item#{if !is_nil(@params["expired"]), do: " active", else: ""} me-auto"}>
+        <%= live_patch gettext("terminati"), to: Routes.live_path(@socket, ShuttertopWeb.ContestLive.Index, expired: "true"), class: "nav-link" %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= if @params["category_id"] do
+              translate("category.#{@params["category_id"]}")
+            else
+              gettext "Categorie"
+            end
+          %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= for {label, i} <- Enum.map(0..8, fn k -> {translate("category.#{k}"), k} end) do %>
+            <%= link label, to: "/contests/category/#{i}", class: "dropdown-item" %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<%= live_redirect to: Routes.contest_form_path(@socket, :new), class: "fab new d-lg-none" do %>
+  <i class="icons add"></i>
+<% end %>
+
+<div class="contests-container container">
+    <div class="contests-content">
+      <div class="d-none  d-lg-flex">
+        <div>
+        <h1><%= @page_title %></h1>
+        </div>
+        <div class="ms-auto pt-1">
+          <%= live_redirect to: Routes.contest_form_path(@socket, :new), class: "btn-spot" do %>
+              <span>
+                  <%= gettext "Crea un contest" %>
+              </span>
+          <% end %>
+        </div>
+      </div>
+      <%= if is_nil(@contests) || @contests.entries == [] do %>
+          <div class="desc-empty-container pt-3">
+              <i class="icons flag_fill"></i><br />
+              <%= gettext("Nessun contest presente") %>
+          </div>
+      <% else %>
+        <div class="row pt-3 gx-sm-4 gy-4">
+        <%= for contest <- @contests do %>
+          <%= render "contest_vert.html", contest: contest, conn: @socket, current_user: @current_user %>
+        <% end %>
+        </div>
+        <%= if !is_nil(@contests) && @contests.total_pages > 1 do %>
+          <div class="pages-container">
+              <% params = ShuttertopWeb.Helpers.PaginatorHelper.get_params(ShuttertopWeb.ContestLive.Index,
+                &live_redirect/2, assigns[:params], ["order", "expired", "category"]) %>
+              <%= ShuttertopWeb.Helpers.PaginatorHelper.pagination_links(@socket, @contests, params) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+</div>

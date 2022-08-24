@@ -1,0 +1,17 @@
+<div class={"photo_page #{if (not is_nil(@params["nolayout"])), do: " loading", else: "" }"} id={"photo-#{@photo.id}"} data-id={@photo.id}>
+    <div class="row photo-row">
+        <div class="photo-container col-offset text-xs-center">
+            <div class="slidernav" id="slidernav">
+                <%= unless is_nil(@params["nolayout"]) do %>
+				<%= link "◀", to: "#", class: "prev" %>
+				<%= link "▶", to: "#", class: "next" %>
+                <% end %>
+                <div class="loading-ico">*</div>
+			</div>
+            <%= img_tag upload_url(@photo, :normal), loading: "lazy", class: "photo-user" %>
+        </div>
+        <div class="col-fixed col-md-12">
+            <%= render "sidebar.html", assigns %>
+        </div>
+    </div>
+</div>

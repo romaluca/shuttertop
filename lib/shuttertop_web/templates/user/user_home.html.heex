@@ -1,0 +1,36 @@
+<div class="container summary">
+    <div class="row">
+        <div class="col-12">
+            <%= render(ShuttertopWeb.PhotoView, "photo_roll.html", entity: @user,
+                        photos: @photos, conn: @conn, current_user: @current_user) %>
+        </div>
+        <div class="left-bar col-lg-8">
+            <%= render ShuttertopWeb.ContestView, "contests.html",  contests: @contests,
+                conn: @conn, current_user: @current_user, title: "Ultimi contest creati", mode_widget: true %>
+        </div>
+        <div class="col-lg-4 right-bar-lg">
+            <div class="container pt-sm-3">
+                <%= render ShuttertopWeb.UserView, "followers.html", users: @followers, conn: @conn, mode_widget: true,
+                        show_more: if(@user.followers_count > 6, do: Routes.live_path(@conn, ShuttertopWeb.UserLive.Show, slug_path(@user), section: "followers"), else: nil) %>
+            </div>
+            <div class="container pt-sm-3">
+                <%= render ShuttertopWeb.UserView, "followers.html", users: @follows, follows: true, conn: @conn, mode_widget: true,
+                        show_more: if(@user.follows_user_count > 6, do: Routes.live_path(@conn, ShuttertopWeb.UserLive.Show, slug_path(@user), section: "follows"), else: nil) %>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="row">
+        <div class="card">
+            <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-6o+ee+1c-3o+4q"
+             data-ad-client="ca-pub-3629337656411099"
+             data-ad-slot="6982729724"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        </div>
+    </div>-->
+</div>

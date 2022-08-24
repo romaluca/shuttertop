@@ -1,0 +1,6 @@
+<%= gettext("Ciao") %>,
+
+<%= gettext("%{from} ti ha inviato a bazzicare su Shuttertop, l'app dei contest fotografici improvvisati. Clicca sul bottone qui sotto per entrare.", from: @from) %>
+
+https://shuttertop.com<https://shuttertop.com>
+

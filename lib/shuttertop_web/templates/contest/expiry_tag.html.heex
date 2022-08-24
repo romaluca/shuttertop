@@ -1,0 +1,11 @@
+<% { days, hours, minutes, seconds, _ } = get_remain(@contest) %>
+<span data-time={ to_iso8601(@contest.expiry_at) } class="time-left">
+    <%= raw(cond do
+        @contest.is_expired ->
+            ngettext("terminato 1 giorno fa", "terminato %{days} giorni fa", days * -1, days: days * -1)
+        days > 0 ->
+            ngettext "manca 1 giorno", "mancano %{days} giorni", days, days: days
+        true ->
+            gettext("mancano %{time}", time: "<span>#{hours}:#{minutes}:#{seconds}</span>")
+        end) %>
+</span>

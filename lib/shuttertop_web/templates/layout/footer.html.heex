@@ -1,0 +1,77 @@
+<% conn = assigns[:conn] || assigns[:socket]
+   active_section = get_active_section(conn)
+%>
+<footer class="footer d-none d-lg-block">
+      <div class="container d-flex flex-row">
+        <div class="me-auto ms-1">
+          <a class="d-block" href="/"><%= icon_tag(conn, "logo", class: "logo") %></a>
+          <span class="footer-subtitle d-block"><%= gettext "Scrosta la tua immaginazione" %><br /><%= gettext "Contest fotografici improvvisati e via discorrendo" %></span>
+          <div class="social-btns">
+            <a href='https://twitter.com/shuttertop_com' target="_blank" rel="noopener">
+                <i class="icon-twitter"></i>
+            </a>
+            <a href='https://www.facebook.com/shuttertopcom' target="_blank" rel="noopener">
+                <i class="icon-facebook"></i>
+            </a>
+            <a href='https://www.instagram.com/shuttertop_com/' target="_blank" rel="noopener">
+                <i class="icon-instagram"></i>
+            </a>
+        </div>
+        </div>
+        <div class="resources">
+          <%= live_redirect gettext("Cos'è?"), to: Routes.page_index_path(conn, :about) %>
+          <a href="/contact"><%= gettext "Contattaci" %></a>
+          <a href={"/privacy/#{ Gettext.get_locale(ShuttertopWeb.Gettext) }"}><%= gettext "Privacy" %></a>
+          <a href="/terms"><%= gettext "Termini" %></a>
+        </div>
+      </div>
+      <div class="lang-store">
+        <div class="container">
+          <div class="langs">
+            <span>© 2021 Shuttertop. All rights reserved.</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="?locale=it"><%= gettext("Italiano") %></a> &middot;
+            <a href="?locale=en"><%= gettext("English") %></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <footer class="footerbar d-lg-none">
+      <div class="container">
+        <% cols = if is_nil(assigns[:current_user]), do: "4", else: "5" %>
+        <div class={"row text-center row-cols-#{ cols }"}>
+                <div class="col">
+                    <%= live_redirect to: Routes.live_path(conn, ShuttertopWeb.ActivityLive.Index), class: "btn btn-link#{if active_section == :home, do: " active" }" do %>
+                        <i class={"icons home-variant#{ if active_section != :home, do: "-outline" }"} aria-hidden="true"></i>
+                    <% end %>
+                </div>
+                <div class="col icon-flag-container">
+                    <%= live_redirect to: Routes.live_path(conn, ShuttertopWeb.ContestLive.Index), class: "btn btn-link#{if active_section == :contests, do: " active" }" do %>
+                        <i class={"icons flag#{ if active_section == :contests, do: "_fill" }"} aria-hidden="true"></i>
+                    <% end %>
+                </div>
+                <div class="col icon-poll-container">
+                    <%= live_redirect to: Routes.live_path(conn, ShuttertopWeb.UserLive.Index), class: "btn btn-link#{if active_section == :users, do: " active" }" do %>
+                        <i class={"icons podium#{ if active_section != :users, do: "-outline" }"} aria-hidden="true"></i>
+                    <% end %>
+                </div>
+                <%= if is_nil(assigns[:current_user]) do %>
+                  <div class="col">
+                    <%= live_redirect to: Routes.live_path(conn, ShuttertopWeb.AuthLive.Index), class: "btn btn-link" do %>
+                        <i class="icons account-outline" aria-hidden="true"></i>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <div class="col">
+                    <%= live_redirect(to: Routes.live_path(conn, ShuttertopWeb.CommentLive.Messages), class: "btn btn-link#{if @current_user.notify_message_count > 0, do: " with_badge"}#{if active_section == :messages, do: " active" }") do %>
+                        <i class={"icons message#{ if active_section != :messages, do: "-outline" }"} aria-hidden="true"></i>
+                    <% end %>
+                  </div>
+                  <div class="col">
+                    <%= live_redirect(to: Routes.live_path(conn, ShuttertopWeb.ActivityLive.Notifies), class: "btn btn-link#{if @current_user.notify_count > 0, do: " with_badge"}#{if active_section == :notifies, do: " active" }") do %>
+                        <i class={"icons notify#{ if active_section != :notifies, do: "-outline" }"} aria-hidden="true"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+        </div>
+      </div>
+    </footer>

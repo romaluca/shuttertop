@@ -1,0 +1,28 @@
+<% id = if block_type_photo?(@activity), do: @activity.photo_id, else: @activity.contest_id %>
+<div class={"activity card #{block_type(@activity)}-block #{block_type(@activity)}-element"} data-id={id} id={"activity-#{@activity.id}"}>
+    <div class="card-body header">
+        <div class="media d-flex">
+            <div class=" me-3">
+                <%= img_tag upload_url(@activity.user, :thumb), loading: "lazy", class: "user-img" %>
+            </div>
+            <div class="media-body">
+                <%= live_redirect @activity.user.name, to: Routes.live_path(@conn, ShuttertopWeb.UserLive.Show, slug_path(@activity.user)) %>
+                <%= translate "activity.action.#{@activity.type}" %>
+                <%=  if block_type(@activity) != "contest", do: live_redirect @activity.contest.name, to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@activity.contest)), else: "" %>
+                <div class="created_at" data-at={Timex.Timezone.convert(@activity.updated_at, "Etc/UTC")}><%= Timex.from_now(@activity.updated_at, locale()) %></div>
+            </div>
+        </div>
+    </div>
+    <%= case block_type(@activity) do
+            "photo" ->
+                 render ShuttertopWeb.PhotoView, "photo_content.html", activity: @activity,
+                    photo: %Shuttertop.Photos.Photo{@activity.photo|contest: @activity.contest},
+                    contest: @activity.contest,
+                    current_user: @current_user,
+                    conn: @conn
+            "contest" ->
+                render "activity_contest.html", activity: @activity, current_user: @current_user, conn: @conn
+            "win" ->
+                render ShuttertopWeb.CommonView, "winner.html", activity: @activity, photo: @activity.photo, contest: @activity.contest, current_user: @current_user, conn: @conn
+    end %>
+</div>

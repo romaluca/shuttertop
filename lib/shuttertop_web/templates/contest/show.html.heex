@@ -1,0 +1,24 @@
+<% conn = @socket || @conn %>
+<div class="contest-container on-top" id="contest" data-id={@contest.id}>
+    <div class="container">
+        <%= render "contest_header.html", assigns %>
+    </div>
+    <div class="contest-view-content">
+        <%= case @params["section"] do
+            "comments" ->
+                render "comments.html", conn: conn, current_user: @current_user,
+                    contest: @contest, comments_count: @contest.comments_count, topic: @topic
+            "rank" ->
+                render "rank.html", assigns
+            "photos" ->
+                params = ShuttertopWeb.Helpers.PaginatorHelper.get_params(ShuttertopWeb.ContestLive.Show,
+                  &live_redirect/2, assigns[:params], ["section"])
+                render ShuttertopWeb.PhotoView, "photos.html", context: @contest,
+                        photos: @photos, conn: conn, current_user: @current_user,
+                        params: params
+            _ ->
+                render "contest_home.html", assigns
+        end %>
+    </div>
+</div>
+<div id="photoPage"></div>

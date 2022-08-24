@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    build_server
+  vars:
+    ansible_connection: docker
+    ansible_host: my_app_build_server
+    build_dir: "/app/build"
+    local_build_dir: "/home/luca/dev/shuttertop_build"

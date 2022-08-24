@@ -1,0 +1,46 @@
+<div>
+    <div class="d-flex">
+    <div><h2>Attività</h2></div>
+    <div class="ms-auto p-2">
+        <%= if @selected do %>
+        <button phx-click="send_notify" id="admin-activities-send-notify" class="btn btn-link" phx-target={@myself}>
+            <i class="icons send"></i>
+        </button>
+        <% end %>
+        <button phx-click="prev_page" id="admin-activities-prev-page" class="btn btn-link" phx-target={@myself}>
+            <i class="icons prev"></i>
+        </button>
+        <button phx-click="next_page" id="admin-activities-next-page" class="btn btn-link" phx-target={@myself}>
+            <i class="icons next"></i>
+        </button>
+    </div>
+    </div>
+    <table class="table table-striped table-hover" phx-hook="Lazyload" id="admin-activities-table">
+        <tbody>
+        <%= for i <- @activities do %>
+            <tr phx-click="select" phx-target={@myself} phx-value-id={i.id}
+                class={if @selected == i.id, do: "selected"} id={"admin-activity-#{i.id}"}>
+                <td style="width: 65px"><%= img_tag upload_url(i.user, :thumb), loading: "lazy", class: "user-img", height: "40", width: "40" %></td>
+                <td class="action"><%= live_redirect i.user.name, to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Show, slug_path(i.user)) %>&nbsp;
+                    <%= translate "activity.action.#{i.type}" %>&nbsp;
+                    <%= cond do
+                        (!is_nil(i.photo) && i.type != 5) || is_nil(i.contest) ->
+                            live_redirect(i.user_to.name, to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Show, slug_path(i.user)))
+                        true ->
+                            live_redirect(i.contest.name, to: Routes.live_path(@socket, ShuttertopWeb.ContestLive.Show, slug_path(i.contest)))
+                        end %>
+                    <%= if !is_nil(i.photo) && i.type != 5 do %>
+                        in <%= live_redirect(i.contest.name, to: Routes.live_path(@socket, ShuttertopWeb.ContestLive.Show, slug_path(i.contest))) %>
+                    <% end %>
+                </td>
+                <td>
+                    <%= if i.user.type == 3 && i.type == 2 do %>
+                        !!
+                    <% end  %>
+                    <span class="updated_at"><%= Timex.format!(i.updated_at, "%H:%M %d/%m", :strftime) %></span>
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>

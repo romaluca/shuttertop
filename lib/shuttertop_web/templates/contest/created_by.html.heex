@@ -1,0 +1,41 @@
+<div class="card card-info">
+    <div class="card-header with-icon">
+        <i class="icons info-circle"></i><h2><%= gettext "Info" %> <%= @contest.edition %>° <%= gettext "edizione" %></h2>
+    </div>
+    <div class="card-body">
+        <div class="d-flex contest-stats">
+            <div class="flex-fill">
+                <div class="score"><%= @contest.photos_count %></div>
+                <div class="label"><%= gettext "Foto" %></div>
+            </div>
+            <div class="flex-fill">
+                <div class="score"><%= @contest.photographers_count %></div>
+                <div class="label"><%= gettext "Partecipanti" %></div>
+            </div>
+            <div class="flex-fill">
+                <div class="score"><%= @contest.followers_count %></div>
+                <div class="label"><%= gettext "Followers" %></div>
+            </div>
+            <div class="flex-fill">
+                <div class="score"><%= @contest.comments_count %></div>
+                <div class="label"><%= gettext "Commenti" %></div>
+            </div>
+        </div>
+        <div class="contest-desc mini">
+            <%= @contest.description %>
+        </div>
+        <%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.UserLive.Show, slug_path(@contest.user)), class: "created-by-container" do %>
+            <div class="d-flex">
+                <%= img_tag upload_url(@contest.user, :thumb_small), loading: "lazy", class: "user-img me-3" %>
+                <div class="info">
+                    <h5 class="name"><%= @contest.user.name %></h5>
+                    <div class="stats">
+                        <%= @contest.user.score %> <%= gettext "punti"%> &middot;
+                        <%= @contest.user.winner_count %> <%= gettext "vittorie"%> &middot;
+                        <%= @contest.user.photos_count %> <%= gettext "foto"%>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest)), class: "contest-activity-thumb-element" do %>
+    <div class="content">
+        <%= if is_nil(@contest.upload) do %>
+            <div class="cover empty">
+                <i class="icon-flags"></i>
+            </div>
+        <% else %>
+            <div class="cover" style={"background-image: url('#{upload_url(@contest, :medium)}')"}></div>
+        <% end %>
+        <div class="desc">
+            <%= if @contest.category_id > 0 do %>
+                <h6 class="category"><%= translate "category.#{@contest.category_id}" %></h6>
+            <% end %>
+            <h3 class={"contests-#{@contest.slug}"}><%= @contest.name%></h3>
+            <div class="details">
+                <%= render "expiry_tag.html", contest: @contest %>
+                &middot;
+                <span><%= ngettext "1 fotografia", "%{photos} fotografie", @contest.photos_count, photos: @contest.photos_count %></span>
+            </div>
+        </div>
+    </div>
+<% end %>

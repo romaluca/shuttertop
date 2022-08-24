@@ -1,0 +1,8 @@
+---
+all:
+  hosts:
+    shuttertop.com
+    #37.139.3.68 
+  vars:
+    local_build_dir: "/home/luca/dev/shuttertop_build"
+    ansible_user: roma

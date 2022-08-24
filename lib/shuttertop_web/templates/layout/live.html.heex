@@ -1,0 +1,12 @@
+<div id={ assigns[:body_id] } class={"main-div#{if !is_nil(assigns[:current_user]), do: " logged"}"}>
+<%= render("navbar.html", assigns) %>
+<main class="content-container">
+  <ShuttertopWeb.Components.flash_alert flash={@flash} type={:success} />
+  <ShuttertopWeb.Components.flash_alert flash={@flash} type={:info} />
+  <ShuttertopWeb.Components.flash_alert flash={@flash} type={:warn} />
+  <ShuttertopWeb.Components.flash_alert flash={@flash} type={:error} />
+  <%= @inner_content %>
+  <.live_component module={ShuttertopWeb.Components.Modal} id="modalDialog" current_user={assigns[:current_user]} />
+</main>
+<%= render "footer.html", assigns %>
+</div>

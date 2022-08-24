@@ -1,0 +1,92 @@
+<% conn = assigns[:conn] || assigns[:socket] %>
+<div class="photo-sidebar" id="photoSidebar">
+    <div class="d-flex flex-column">
+        <div class="created-by container order-2 order-lg-0">
+            <%= live_redirect to: Routes.live_path(conn, ShuttertopWeb.UserLive.Show, slug_path(@photo.user)), class: "username d-flex" do %>
+                <%= img_tag upload_url(@photo.user, :thumb), class: "user-img" %>
+                <div>
+                    <h5>
+                        <%= @user.name %><br />
+                        <span class="created_at" data-at={ Timex.Timezone.convert(@photo.inserted_at, "Etc/UTC")}><%= Timex.from_now(@photo.inserted_at, locale()) %></span>
+                    </h5>
+                </div>
+            <% end %>
+        </div>
+        <div id="photo-title-bar" class="order-3 container order-lg-1">
+            <div class="edit-photo-name">
+                <div class="photo-detail-container pages photo-name">
+                    <%= if @current_user == @photo.user do %>
+                        <i class="icons pencil"></i>
+                        <div>
+                            <span class="label"><%= gettext "info" %></span><br />
+                            <h2 id="photo_name_label"><%= if blank?(@photo.name), do: "Dai un nome alla tua foto", else: "#{@photo.name}" %></h2>
+                            <%= render("exif.html", photo: @photo) %>
+                        </div>
+                    <% else %>
+                            <i class="icons camera"></i>
+                            <div>
+                                <span class="label"><%= gettext "info" %></span><br />
+                                <%= if !blank?(@photo.name) do %>
+                                <h2><%= @photo.name %></h2>
+                                <% end %>
+                                <%= render("exif.html", photo: @photo) %>
+                            </div>
+                    <% end %>
+                </div>
+                <%= if @current_user == @photo.user do %>
+                <%= live_render(conn, ShuttertopWeb.PhotoLive.Form, session: %{"photo_id" => @photo.id,
+                            "user_id" => get_user_id(@current_user)}, id: "photo-form-#{@photo.id}") %>
+                <% end %>
+            </div>
+            <div class="photo-detail-container">
+                <i class="icons flag_fill"></i>
+                <div>
+                    <span class="label"><%= gettext "contest" %></span><br />
+                    <h2><%=
+                        live_redirect(@photo.contest.name, to: Routes.live_path(conn, ShuttertopWeb.ContestLive.Show, slug_path(@photo.contest))) %></h2>
+                </div>
+            </div>
+        </div>
+        <div class="results d-flex order-0 container order-lg-2">
+            <div class="me-auto">
+                <i class="icons heart_circle"></i><span class={"votes vote-#{@photo.id}"}><%= @photo.votes_count %></span>
+                <i class="icons grid_circle"></i><span class={"position vote-#{@photo.id }"}><%= @photo.position %></span>
+                (<%= gettext "su %{tot}", tot: @photo.contest.photos_count %>)
+            </div>
+            <div>
+                <span class="comment_count"><%= @photo.comments_count %></span> <%= ngettext("commento", "commenti", @photo.comments_count) %>
+
+            </div>
+        </div>
+        <div class="buttons-container container order-1 order-lg-3">
+            <div class="row">
+            <div class="col-4 photo-vote-btn" id={"buttonVote-#{@photo.id}"}>
+            <.live_component
+                    module={ShuttertopWeb.Components.Vote}
+                    photo={@photo}
+                    current_user={@current_user}
+                    label_mode={true}
+                    id={"buttonVote-#{@photo.id}"} />
+            </div>
+            <a href="#" class="photo-comment-btn col-4">
+                <i class="icons comment"></i>
+                <span><%= gettext "commenta" %></span>
+            </a>
+            <a href="#" data-bs-toggle="modal" data-bs-target=".modal-container" class="col-4"
+                data-bs-section="photos" data-bs-url={"#{@photo.id}/#{@photo.slug}"} data-bs-id={@photo.slug}>
+                <i class="icon-share"></i>
+                <span><%= gettext "spargi" %></span>
+            </a>
+            </div>
+        </div>
+    </div>
+    <div class="container p-0">
+        <.live_component
+            module={ShuttertopWeb.Components.Chat}
+            current_user={@current_user}
+            entity={@photo}
+            page_id="photoPage"
+            topic={@topic}
+            id={"photoComment-#{@photo.id}"} />
+    </div>
+</div>

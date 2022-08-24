@@ -1,0 +1,19 @@
+<% lang_code = @params["lang"] || "en"
+	lang = if lang_code == "it", do: "28724904", else: "60213871" %>
+<div class="container">
+	<div class="row">
+    	<div class="col-lg-8 col-sm-11 col-12 mx-auto page-content">
+    	   <div class="card">
+    	   	<%= if is_nil(@params["content"]) do %>
+			<div class="card-header">
+		    	<h1>Privacy policy</h1>
+		    </div>
+			<% end %>
+		    <div>
+		    	<a href={"https://www.iubenda.com/privacy-policy/#{ lang }"} class="iubenda-black no-brand iubenda-embed iub-body-embed" title=""></a>
+		    </div>
+		    <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+		   </div>
+		</div>
+	</div>
+</div>

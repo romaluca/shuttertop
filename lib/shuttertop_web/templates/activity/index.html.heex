@@ -1,0 +1,165 @@
+<div class="now-phone container">
+    <div>
+        <button class= "now-btn" type="button" phx-click="show-modal" phx-value-type="profile_menu" id="profileMenuBtn">
+            <%= img_tag upload_url(@current_user,:thumb_small), loading: "lazy", class: "user-img" %> <%= gettext "Tu" %>
+        </button>
+        <%= live_redirect to: Routes.contest_form_path(@socket, :new), class: "now-btn" do %>
+            <%= gettext "Crea un contest" %>
+        <% end %>
+        <%= link to: if(is_nil(@params["not_booked"]), do: "?not_booked=1", else: "/"), class: "now-btn" do %>
+            <i class="icons explore"></i> <%= gettext "Ficcanasa a caso" %>
+        <% end %>
+        <%= live_redirect to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Edit), class: "now-btn" do %>
+            <i class="icons settings"></i> <%= gettext "Impostazioni" %>
+        <% end %>
+    </div>
+</div>
+<div class="container home-container">
+    <div class="row gx-sm-5">
+        <div class="col-lg-8 page-content">
+            <%= if @user_photos.total_entries > 0 || !is_nil(@contest_top) do %>
+                <div class="card elements-now-phone container">
+                    <%= if @user_photos.total_entries > 0 do %>
+                    <h6><%= gettext("Le mie sfide in corso") %></h6>
+                    <div class="in-progress-container">
+                        <div class="d-flex flex-row">
+                            <%= for i <- @user_photos do %>
+                                    <%= link to: "/users/#{slug_path(@current_user)}/photos/in_progress/#{i.id}", class: "in_progress_element" do %>
+                                        <%= img_tag(upload_url(i, :thumb), loading: "lazy", width: "99", height: "99") %>
+                                        <div class="stat"><i class="icons heart_circle"></i> <%= i.votes_count %>&nbsp;&nbsp;<i class="icons grid_circle"></i> <%= i.position %></div>
+                                    <% end %>
+                            <% end %>
+                        </div>
+
+                    </div>
+                    <% end %>
+                    <%= unless is_nil(@contest_top) do %>
+                        <div class={"top-week #{ if @user_photos.total_entries > 0, do: "pt-3 pe-3" }"}>
+                            <%= render ShuttertopWeb.ContestView, "contest_thumb.html", contest: @contest_top, conn: @socket %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+            <%= if @activities.total_entries > 0 do %>
+                <%= render ShuttertopWeb.ActivityView, "activity_list.html", activities: @activities, current_user: @current_user, conn: @socket %>
+            <% else %>
+                <div class="activities-blank card pt-0">
+                    <div class="card-header">
+                        <h1><%= gettext "Cazzarola, nessuna news in vista?" %></h1>
+                    </div>
+                    <div class="card-body p-lr-075">
+                        <div class="desc-empty-container pt-2">
+                            <i class="icons eye_fill"></i><br />
+                            <%= gettext("Questa bacheca rimarrà vuota ancora per poco. Inizia a seguire persone e/o contest e vedrai news cadere a catinelle proprio qui.") %>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3 p-3 pt-5">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-format="fluid"
+                         data-ad-layout-key="-6o+ee+1c-3o+4q"
+                         data-ad-client="ca-pub-3629337656411099"
+                         data-ad-slot="6982729724"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-lg-4 right-bar">
+            <div class="right-bar-content">
+                <%= live_redirect to: Routes.contest_form_path(@socket, :new), class: "btn-spot" do %>
+                    <span>
+                        <%= gettext "Crea un contest" %>
+                    </span>
+                <% end %>
+                <div class="card stats-container">
+                    <div class="card-header">
+                        <h6><%= gettext "La tua situazione" %></h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex user-stats">
+                            <div class="flex-fill">
+                                <div class="score"><%= @current_user.score %></div>
+                                <div class="label"><%= gettext "Punti" %></div>
+                            </div>
+                            <div class="flex-fill">
+                                <div class="score"><%= @current_user.winner_count %></div>
+                                <div class="label"><%= gettext "Vincite" %></div>
+                            </div>
+                            <div class="flex-fill">
+                                <div class="score"><%= @current_user.photos_count %></div>
+                                <div class="label"><%= gettext "Giocate" %></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%= unless is_nil(@contest_top) do %>
+                <div class="card top-week mt-3">
+                    <%= render ShuttertopWeb.ContestView, "contest_thumb.html", contest: @contest_top, conn: @socket %>
+                </div>
+                <% end %>
+                <div class="card elements-now photos">
+                    <div class="card-header">
+                        <h6><%= gettext("Le mie sfide in corso") %></h6>
+                    </div>
+                    <div>
+                        <%= if @user_photos.total_entries > 0 do %>
+                            <div class="in-progress-container">
+                            <%= for i <- @user_photos do %>
+                                 <%= link to: "/users/#{slug_path(@current_user)}/photos/in_progress/#{i.id}", class: "in_progress_element" do %>
+                                    <div>
+                                        <%= img_tag(upload_url(i, :thumb), loading: "lazy", width: "99", height: "99") %>
+                                        <div class="stat"><i class="icons heart_circle"></i> <%= i.votes_count %>&nbsp;&nbsp;<i class="icons grid_circle"></i> <%= i.position %></div>
+
+                                    </div>
+                                 <% end %>
+                            <% end %>
+                            </div>
+                            <%= if @user_photos.total_entries > 6 do %>
+                            <div class="card-footer more">
+                                <% i = List.first(@user_photos.entries) %>
+                                <%= link gettext("Visualizza tutte"), to: "/users/#{slug_path(@current_user)}/photos/in_progress/#{i.id}", class: "card-link" %>
+                            </div>
+                            <% end %>
+                        <% else %>
+                            <div class="p-3"><%= gettext "Nessuna foto in gara" %></div>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="card elements-now contests">
+                    <div class="card-header">
+                        <h6><%= "I tuoi contest creati" %></h6>
+                    </div>
+                    <%= if @user_contests.total_entries > 0 do %>
+                        <ul class="ps-0 pe-0 pt-2 pb-0">
+                        <%= for i <- @user_contests do %>
+                            <%= render ShuttertopWeb.ContestView, "contest_ori.html", contest: i, conn: @socket, current_user: @current_user %>
+                        <% end %>
+                        </ul>
+                        <%= if @user_contests.total_entries > 6 do %>
+                        <div class="card-footer more">
+                            <%= live_patch gettext("Visualizza tutti"), to:
+                                    Routes.live_path(@socket, ShuttertopWeb.UserLive.Show, slug_path(@current_user), section: "contests"), class: "card-link" %>
+                        </div>
+                        <% end %>
+                    <% else %>
+                        <div class="p-3"><%= gettext "Nessun contest creato" %></div>
+                    <% end %>
+                </div>
+                <div class="card mt-3">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-format="fluid"
+                         data-ad-layout-key="-6o+ee+1c-3o+4q"
+                         data-ad-client="ca-pub-3629337656411099"
+                         data-ad-slot="6982729724"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

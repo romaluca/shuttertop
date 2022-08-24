@@ -1,0 +1,55 @@
+<div class={"card #{assigns[:col]}"}>
+  <%= if !is_nil(assigns[:title]) do %>
+    <%= if is_nil(assigns[:mode_widget]) do %>
+      <div class="card-header"><h1><%= @title %></h1></div>
+    <% else %>
+      <div class="card-header with-icon"><i class="icons flag-circle"></i><h2><%= @title %></h2></div>
+    <% end %>
+  <% end %>
+  <%= if is_nil(@contests) || @contests.entries == [] do %>
+  <div class="card-body">
+        <div class="desc-empty-container pt-2">
+            <i class="icons flag_fill"></i><br />
+            <%= gettext("Nessun contest presente") %>
+        </div>
+  </div>
+  <% else %>
+  <div class="card-body">
+  <ul class="list-group list-group-flush">
+    <!-- if is_nil(assigns[:mode_widget]) do
+    <li class="list-group-item">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-format="fluid"
+           data-ad-layout-key="-hl-9+16-6u+d1"
+           data-ad-client="ca-pub-3629337656411099"
+           data-ad-slot="6926055256"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </li>
+     end -->
+    <%= for contest <- @contests do %>
+      <%= render "contest_ori.html", contest: contest, conn: @conn, current_user: @current_user %>
+    <% end %>
+    </ul>
+    </div>
+    <%= if is_nil(assigns[:mode_widget]) do %>
+      <%= if (!is_nil(@contests) && @contests.total_pages > 1) do %>
+      <div class="pages-container">
+          <% params = ShuttertopWeb.Helpers.PaginatorHelper.get_params(ShuttertopWeb.ContestLive.Index,
+                &live_redirect/2, assigns[:params], ["order", "country_id"]) %>
+          <%= ShuttertopWeb.Helpers.PaginatorHelper.pagination_links(@conn, @contests, params) %>
+      </div>
+      <% end %>
+    <% else %>
+      <%= if @contests.total_entries > 8 do %>
+        <div class="card-footer more">
+            <%= live_redirect gettext("Visualizza tutti"),
+                  to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Index,
+                      %{user_id: List.first(@contests.entries).user.id}) %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

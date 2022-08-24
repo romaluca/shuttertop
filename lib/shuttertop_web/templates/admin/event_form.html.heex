@@ -1,0 +1,27 @@
+<div class="ms-3 me-3">
+<%= if @closed do %>
+    <button class="btn btn-primary" phx-target={@myself} phx-click="open">Eventi (<%= Enum.count(@events) %>)</button>
+<% else %>
+    <div>
+    <%= form_for @changeset, "#", [phx_submit: :save,  phx_target: @myself, class: "form-event", id: "form-event", phx_hook: "EventForm"], fn f -> %>
+        <div class="input-group">
+            <%= select f, :type, ["Contest della settimana": "13"], class: "form-control" %>
+            <%= text_input f, :week, placeholder: gettext("Settimana"), class: "form-control" %>
+            <%= text_input f, :year, placeholder: gettext("Anno"), class: "form-control" %>
+            <%= text_input f, :contest_id, placeholder: gettext("Contest id"), class: "form-control" %>
+            <span class="input-group-btn">
+                <%= submit Gettext.gettext(ShuttertopWeb.Gettext, "save"), phx_disable_with: Gettext.gettext(ShuttertopWeb.Gettext, "Saving..."), class: "btn btn-secondary" %>
+            </span>
+        </div>
+    <% end %>
+    <div class="events-container">
+        <%= for i <- @events do %>
+            <div class="event">
+                <%= live_redirect i.contest.name, to: Routes.live_path(@socket, ShuttertopWeb.ContestLive.Show, slug_path(i.contest)) %>
+                <button class="delete" phx-target={@myself} phx-click="delete" phx-value-id={i.id}><i class="icons close"></i></button>
+            </div>
+        <% end %>
+    </div>
+    </div>
+<% end %>
+</div>

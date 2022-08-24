@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-6 m-auto page-content">
+    <.form let={f} for={@changeset}  phx-submit="save" phx-hook="GooglereCAPTCHA" class="login mx-auto" id="registerUser">
+    <div class="card">
+      <div class="card-header">
+          <h1><%= gettext "iscriviti con" %></h1>
+        </div>
+        <div class="card-body">
+        <div class="auth-links text-center">
+            <div class="">
+              <div class="row">
+                <div class="col">
+                  <a href={ Routes.auth_path(@socket, :login, "facebook") } class="facebook-btn btn btn-block facebook-btn">
+                    <i class="icon-facebook" aria-hidden="true"></i>
+                  </a>
+                </div>
+                <div class="col">
+                  <a href={ Routes.auth_path(@socket, :login, "google") } class="google-btn btn btn-block facebook-btn">
+                    <i class="icon-google" aria-hidden="true"></i>
+                  </a>
+                </div>
+
+                <div class="col">
+                  <a href="#" class="apple-btn btn btn-block" id="sign-in-with-apple-button"
+                      onclick="window.loadApple(event)">
+                    <i class="icon-apple" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="or-div"><span><%= gettext "oppure con" %></span></div>
+        </div>
+        <div class="form-group">
+            <%= text_input f, :name, autofocus: true, placeholder: gettext("Nome di battaglia"), class: "form-control validate" %>
+            <%= error_tag f, :name %>
+        </div>
+        <div class="form-group">
+          <%= email_input f, :email, placeholder: gettext("Email"), class: "form-control validate" %>
+          <%= error_tag f, :email %>
+        </div>
+        <%= inputs_for f, :authorizations, fn a -> %>
+          <%= error_tag a, :provider_uid %>
+          <div class="form-group">
+            <%= password_input a, :password, placeholder: gettext("Password"), autocomplete: "off", class: "form-control validate" %>
+            <%= error_tag a, :password %>
+          </div>
+          <div class="form-group">
+            <%= password_input a, :password_confirmation, placeholder: gettext("Conferma password"), autocomplete: "off", class: "form-control validate" %>
+            <%= error_tag a, :password_confirmation %>
+          </div>
+        <% end %>
+        <div class="form-group">
+          <%= select f, :country_code, Enum.map(Enum.reverse(Countries.all), fn c -> { c.name, to_string(c.alpha2) } end), class: "form-control", prompt: gettext("Scegli il tuo paese se vuoi") %>
+          <%= error_tag f, :country_code %>
+        </div>
+        <input type="hidden" name="redirect" id="redirectUrl">
+        <div phx-update="ignore" id="recaptchaContainer">
+          <%= raw Recaptcha.Template.display() %>
+        </div>
+        <%= error_tag @changeset, :base  %>
+        <button class="btn btn-primary btn-block btn-login mt-5"><%= gettext "Iscriviti" %></button>
+
+    </div>
+    </div>
+    </.form>
+  </div>
+  </div>
+</div>

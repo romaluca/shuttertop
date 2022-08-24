@@ -1,0 +1,36 @@
+<%
+    url = case @entity do
+        %Shuttertop.Contests.Contest{} ->
+            Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@entity), section: "photos")
+        %Shuttertop.Accounts.User{} ->
+            Routes.live_path(@conn, ShuttertopWeb.UserLive.Show, slug_path(@entity), section: "photos")
+    end
+%>
+<div class="card photo-roll">
+    <div class="card-header with-icon"><i class="icons camera-circle"></i><h2><%= gettext "Foto recenti" %></h2></div>
+    <div class="card-body ps-2 pe-2">
+        <%= if is_nil(@photos) || @photos.entries == [] do %>
+            <div class="desc-empty-container pt-2">
+                <i class="icons camera-roll"></i><br />
+                <%= gettext("Nessuna photo inserita") %>
+            </div>
+        <% else %>
+            <div class="container">
+            <div class="row">
+                <%= for i <- @photos do %>
+                        <%= render ShuttertopWeb.PhotoView, "photo_thumb.html",
+                            photo: i, conn: @conn, current_user: @current_user,
+                            context: @entity,
+                            order: "news",
+                            hide_vote: true %>
+                <%  end %>
+            </div>
+            </div>
+        <% end %>
+    </div>
+    <%= if @entity.photos_count > 6 do %>
+    <div class="card-footer more">
+        <%= live_redirect gettext("Visualizza tutti"), to: url %>
+    </div>
+    <% end %>
+</div>

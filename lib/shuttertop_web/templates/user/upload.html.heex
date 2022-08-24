@@ -1,0 +1,13 @@
+<form class={"element mb-0 clickable upload-btn#{if @is_uploading, do: " in-progress"}"} phx-change="validate" phx-submit="save" id={"user-upload-#{@id}"}>
+  <%= unless @is_uploading do %>
+  <label for={@uploads.upload.ref} class="clickable">
+    <%= gettext "Carica foto profilo" %>
+  </label>
+  <% end %>
+  <%= live_file_input @uploads.upload, class: "input-file check-user" %>
+  <div class="js-signed-upload-status">
+      <%= for entry <- @uploads.upload.entries do %>
+        <%= entry.progress %>%
+      <% end %>
+  </div>
+</form>

@@ -1,0 +1,25 @@
+<div class="card card-body contest">
+    <%= img_tag upload_url(@contest, :thumb_small), loading: "lazy", class: "card-img-top img-fluid category", alt: @contest.name %>
+    <div class="details d-flex justify-content-start">
+        <div class="me-1">
+            <h6 class="category"><%= translate "category.#{@contest.category_id}" %></h6>
+            <h4 class="card-title"><%= live_redirect @contest.name, to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest)) %></h4>
+            <div class="info">
+                <%= if days_left(@contest.expiry_at) > 0 do %>
+                    <span class="days-left"><%= ngettext "1 giorno", "%{days} giorni", days_left(@contest.expiry_at), days: days_left(@contest.expiry_at) %></span>
+                <% else %>
+                <span class="time-left" data-time={to_iso8601(@contest.expiry_at)}>
+                    <%= time_left(@contest.expiry_at) %>
+                </span>
+                <% end %> &middot;
+                <%= ngettext "1 partecipante", "%{photos} partecipanti", @contest.photos_count, photos: @contest.photos_count %>
+            </div>
+        </div>
+        <%= if @contest.user_photo do %>
+            <div class="user-photo me-auto">
+                <%= img_tag upload_url(@contest.user_photo, :thumb), loading: "lazy" %>
+                <div><%= @contest.user_photo.position %>°</div>
+            </div>
+        <% end %>
+    </div>
+</div>

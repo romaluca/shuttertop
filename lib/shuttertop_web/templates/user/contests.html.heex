@@ -1,0 +1,23 @@
+<div class="container">
+    <%= if is_nil(@contests) || @contests.entries == [] do %>
+        <div class="card mt-sm-3">
+            <div class="desc-empty-container pt-3">
+                <i class="icons flag_fill"></i><br />
+                <%= gettext("Nessun contest presente") %>
+            </div>
+        </div>
+    <% else %>
+        <div class="row pt-3 gx-sm-4 gy-4">
+        <%= for contest <- @contests do %>
+        <%= render ShuttertopWeb.ContestView, "contest_vert.html", contest: contest, conn: @conn, current_user: @current_user %>
+        <% end %>
+        </div>
+        <%= if !is_nil(@contests) && @contests.total_pages > 1 do %>
+        <div class="pages-container">
+            <% params = ShuttertopWeb.Helpers.PaginatorHelper.get_params(ShuttertopWeb.ContestLive.Index,
+                &live_redirect/2, assigns[:params], ["order", "expired", "category"]) %>
+            <%= ShuttertopWeb.Helpers.PaginatorHelper.pagination_links(@conn, @contests, params) %>
+        </div>
+        <% end %>
+    <% end %>
+</div>

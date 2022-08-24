@@ -1,0 +1,24 @@
+<div class="edit-contest-container container">
+	<div class="row">
+    	<div class="col-lg-8 col-sm-11 col-11 center-block">
+		    <h1>Edit photo</h1>
+        <%= form_for @changeset, "update", [ class: "login m-x-auto" ], fn f -> %>
+              <%= if @changeset.action do %>
+                <div class="alert alert-danger">
+                  <p><%= gettext "Orca zozza, c'è qualcosa che non va! Controlla gli errori qui sotto." %></p>
+                </div>
+              <% end %>
+
+              <div class="form-group">
+                <%= label f, :name, class: "control-label" %>
+                <%= text_input f, :name, autofocus: true, placeholder: "", class: "form-control" %>
+                <%= error_tag f, :name %>
+              </div>
+
+              <div class="form-group">
+                <%= submit gettext("salva"), class: "btn btn-primary" %>
+              </div>
+        <% end %>
+      </div>
+    </div>
+</div>

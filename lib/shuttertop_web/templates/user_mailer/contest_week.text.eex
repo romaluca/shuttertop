@@ -1,0 +1,7 @@
+<%= gettext("Ciao") %>
+
+<%= gettext("%{contest_name} è il nuovo contest della settimana creato da %{from}", from: @from, contest_name: @contest_name) %>.
+
+<%= gettext("Clicca sul bottone qui sotto per caricare e votare le foto", from: @from) %>.
+
+<%= @url %><<%=@url %>>

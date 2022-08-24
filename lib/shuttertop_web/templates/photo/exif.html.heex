@@ -1,0 +1,17 @@
+<%= if @photo.meta && !blank?(@photo.meta["model"]) do %>
+    <div class="machine">
+        <p><%= String.trim("#{@photo.meta["make"]} #{@photo.meta["model"]}") %></p>
+        <%= if !is_nil(@photo.meta["f_number"]) do %>
+            <span><%= "f/#{@photo.meta["f_number"]}" %></span>
+        <% end %>
+        <%= if !is_nil(@photo.meta["exposure_time"]) && @photo.meta["exposure_time"] != 0 do %>
+            <span><%= "1/#{ round(1 / @photo.meta["exposure_time"])}" %></span>
+        <% end %>
+        <%= if !is_nil(@photo.meta["focal_length"]) do %>
+            <span><%= "#{@photo.meta["focal_length"]}mm" %></span>
+        <% end %>
+        <%= if !is_nil(@photo.meta["photographic_sensitivity"]) do %>
+            <span><%= "ISO#{@photo.meta["photographic_sensitivity"]}" %></span>
+        <% end %>
+    </div>
+<% end %>

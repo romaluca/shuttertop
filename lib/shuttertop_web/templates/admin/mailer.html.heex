@@ -1,0 +1,21 @@
+<div>
+<%= if @closed do %>
+    <button class="btn btn-primary" phx-click="open" phx-target={@myself}>Send mail</button>
+<% else %>
+    <div>
+    <%= form_for :email, "#", [ phx_submit: :send_mail,  phx_target: @myself, class: "form-event", id: "form-event", phx_hook: "EventForm"], fn f -> %>
+        <div class="input-group">
+            <%= text_input f, :email, placeholder: gettext("Email"), class: "form-control" %>
+            <%= text_input f, :subject, placeholder: gettext("Subject"), class: "form-control" %>
+            <%= textarea f, :message, placeholder: gettext("Message"), class: "form-control" %>
+            <span class="input-group-btn">
+                <%= submit Gettext.gettext(ShuttertopWeb.Gettext, "save"), phx_disable_with: Gettext.gettext(ShuttertopWeb.Gettext, "Saving..."), class: "btn btn-secondary" %>
+            </span>
+        </div>
+    <% end %>
+    <%= if assigns[:mail_result] do %>
+        <div>MAIL: <%= assigns[:mail_result] %></div>
+    <% end %>
+    </div>
+<% end %>
+</div>

@@ -1,0 +1,22 @@
+<% path = Routes.live_path(@conn, ShuttertopWeb.PhotoLive.Slide, "contests", slug_path(@contest), "top", @photo.id) %>
+<%= link to: path, class: "photo-rank d-flex" do %>
+	<div class="position">
+		<%= if !Ecto.assoc_loaded?(@photo.contest) || @photo.contest.winner_id != @photo.id do %>
+			<%= @photo.position %>.
+		<% else %>
+			<i class="icon-medal-outline"></i>
+		<% end %>
+	</div>
+	<div class="img-container">
+		<%= img_tag upload_url(@photo, :thumb), loading: "lazy", class: "photo" %>
+	</div>
+	<div class="info">
+		<div class="user">
+			<%= img_tag upload_url(@photo.user, :thumb_small), loading: "lazy", class: "user-img" %>
+			<div class="username"><%= @photo.user.name %></div>
+			<div class="votes">
+				<i class="icons heart_circle"></i> <%= @photo.votes_count %>
+			</div>
+		</div>
+	</div>
+<% end %>

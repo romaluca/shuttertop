@@ -1,0 +1,25 @@
+<li class="list-group-item">
+    <%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest)) do %>
+      <div class="contest-ori-element">
+        <%= if is_nil(@contest.upload) do %>
+            <div class="img-container empty">
+                <i class="icon-flags"></i>
+            </div>
+        <% else %>
+            <div class="img-container" style={"background-image: url('#{upload_url(@contest, :thumb)}')"}></div>
+        <% end %>
+        <div class="content ps-3">
+            <%= render "expiry_tag.html", contest: @contest %>
+            <%= if Ecto.assoc_loaded?(@contest.events) && length(@contest.events) > 0 do %>
+                <span class="top-week"><%= gettext "Top week" %></span>
+            <% end %>
+            <h5 class="name"><%= @contest.name%></h5>
+            <div class="details">
+                <span><%= ngettext "1 fotografia", "%{photos} fotografie", @contest.photos_count, photos: @contest.photos_count %></span>
+                &middot;
+                <span><%= ngettext "1 partecipante", "%{photos} partecipanti", @contest.photographers_count, photos: @contest.photographers_count %></span>
+            </div>
+        </div>
+      </div>
+  <% end %>
+</li>

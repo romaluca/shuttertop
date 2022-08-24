@@ -1,0 +1,7 @@
+---
+all:
+  hosts:
+    37.139.3.68
+  vars:
+    ansible_python_interpreter:
+      /usr/bin/python3

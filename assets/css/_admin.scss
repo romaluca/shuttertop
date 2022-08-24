@@ -1,0 +1,83 @@
+#adminPage {
+    #eventForm, #adminMailerForm {
+        display: inline-block;
+    }
+
+    #randomVoteForm {
+        display: inline-block;
+    }
+
+    #form-random-vote {
+        display: block;
+    }
+
+    #form-event {
+        display: block;
+    }
+
+    tr.selected {
+        background-color: $btn-frame-back-hover;
+    }
+
+    .user-type {
+        display: inline-block;
+        select {
+            background-color: $frame-back;
+            color: var(--bodyColor);
+            
+        }
+    }
+
+    table td {
+        word-break: break-all;
+        line-height: 40px;
+        @include media-breakpoint-down(lg) {
+            font-size: 14px;
+            line-height: normal;
+        }
+
+        .id, .updated_at {
+            color: var(--secondaryTextColor);
+        }
+        .platform {
+            color: #191;
+        }
+        &.action {
+            color: var(--secondaryTextColor);
+            a {
+                color: var(--bodyColor);
+            }
+        }
+        .type {
+            background-color: #666;
+            color: white;
+            text-transform: uppercase;
+            font-size: 12px;
+            padding: 0 2px;
+            line-height: 20px;
+            display: inline-block;
+        }
+        .provider {
+            text-transform: uppercase;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            text-align: center;
+            line-height: 20px;
+            &.facebook {
+                background-color: #4267B2;
+            }
+            &.google {
+                background-color: #DB4437;
+            }
+            &.identity {
+                background-color: darkgoldenrod;
+            }
+            &.apple {
+                background-color: violet;
+            }
+        }
+    }
+}

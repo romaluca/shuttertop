@@ -1,0 +1,112 @@
+<% conn = @socket || @conn %>
+<div class={"contest-header-container card #{ if is_nil(@params["section"]), do: "", else: "mini" }"}>
+    <div class="contest-cover-container category"
+        style={if !is_nil(@contest.upload), do: "background-image: url(#{upload_url(@contest, :normal)})"}>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" style="height: 300px;left: -240px;fill: var(--frameBack);position: absolute;" class="d-none d-lg-block">
+          <polygon points="50,0 100,0 80,100 0,100"></polygon>
+        </svg>
+        <%= if is_nil(@contest.upload) do %>
+            <i class="icon-flags"></i>
+        <% end %>
+    </div>
+    <div class="contest-header-content-container">
+    <div class="content">
+        <h6 class="category"><%= translate("contest fotografico") %>
+            <%= if @contest.category_id > 0 do %>
+            <span> / </span>
+            <%= translate "category.#{@contest.category_id}" %>
+            <% end %></h6>
+        <h1 class={"contests-#{@contest.slug}"}><%= @contest.name %></h1>
+         <div class="details-bar">
+            <%= render "expiry_tag.html", contest: @contest %>
+        </div>
+        <% is_current_user = !is_nil(@current_user) && @contest.user == @current_user %>
+        <div class="summary joinable">
+            <div class="d-flex justify-content-center justify-content-lg-start">
+                <div class="me-3 ms-3">
+                <%= if @contest.is_expired do %>
+                    <%= link to: "/contests/new?contest_id=#{@contest.id}", class: "element d-block recycle-btn btn btn-primary" do %>
+                        <i class="icons recycle" aria-hidden="true"></i>
+                        <span><%= gettext "Rilancia" %></span>
+                    <% end %>
+                <% else %>
+                    <.live_component
+                            module={ShuttertopWeb.Components.Upload}
+                            entity_id={@contest.id}
+                            entity={:photo}
+                            label_class="btn btn-primary"
+                            changeset={@photo_changeset}
+                            current_user={@current_user}
+                            form_class="element join-btn-container"
+                            icon="camera-outline"
+                            label="Partecipa"
+                            id="photoUpload" />
+                <% end %>
+                </div>
+                <%= unless is_current_user do %>
+                    <div class="me-3">
+                    <.live_component
+                            module={ShuttertopWeb.Components.Follow}
+                            entity={@contest}
+                            class="contest-follow-btn element clickable btn btn-secondary"
+                            current_user={@current_user}
+                            id={"contest-follow-#{@contest.id}"} />
+                    </div>
+                <% end %>
+                <div class="me-3">
+                    <button class="element clickable share-btn btn btn-secondary" phx-click="show-modal" phx-value-type="share"
+                        phx-value-url={Routes.live_path(conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest))}
+                        id="shareContestBtn">
+                        <i class="icon-share"></i>
+                        <span><%= gettext "Condividi" %></span>
+                    </button>
+                </div>
+                <%= if (@contest.user == @current_user || is_admin(@current_user)) do %>
+                    <div class="me-3">
+                    <button class="element clickable dropdown-toggle btn btn-secondary" id="dropdownMenuContest"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icons menu-vertical"></i>
+                            <span><%= gettext "Impostazioni" %></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuContest">
+                        <%= live_redirect gettext("Modifica"), to: Routes.contest_form_path(conn, :edit, id: @contest.id), class: "dropdown-item" %>
+                        <.live_component
+                            module={ShuttertopWeb.Components.Upload}
+                            current_user={@current_user}
+                            entity_id={@contest.id}
+                            changeset={@contest_changeset}
+                            entity={:contest}
+                            label="Carica cover"
+                            label_class="add-cover"
+                            id="contestUpload"
+                            class="dropdown-item" />
+                        <%= if @contest.photos_count > 0 do %>
+                        <a href="#" phx-click="delete" class="dropdown-item"><%= gettext("Elimina") %></a>
+                        <% end %>
+                    </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="subnav">
+        <div class="container" style="color:white;">
+        <ul class="nav justify-content-lg-center row nowrap">
+            <li class={"nav-item #{ if is_nil(@params["section"]), do: "active", else: "" } col"}>
+            <%= live_patch gettext("panoramica"), to: Routes.live_path(conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest)), class: "nav-link" %>
+            </li>
+            <li class={"nav-item #{ if @params["section"] == "photos", do: "active", else: "" } col"}>
+            <%= live_patch gettext("foto"), to: Routes.live_path(conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest), section: "photos"), class: "nav-link" %>
+            </li>
+            <li class={"nav-item #{ if @params["section"] == "rank", do: "active", else: "" } col"}>
+            <%= live_patch gettext("classifica"), to: Routes.live_path(conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest), section: "rank"), class: "nav-link" %>
+            </li>
+            <li class={"nav-item #{ if @params["section"] == "comments", do: "active", else: "" } col"}>
+            <%= live_patch gettext("discussione"), to: Routes.live_path(conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest), section: "comments"), class: "nav-link" %>
+            </li>
+        </ul>
+        </div>
+    </div>
+
+</div>

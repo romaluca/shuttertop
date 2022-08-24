@@ -1,0 +1,11 @@
+<div class="details">
+    <%= ngettext "1 foto", "%{photos} foto", @user.photos_count, photos: @user.photos_count %>
+		<%= if @type != "" and !is_nil(@type) do %>
+		  &middot;
+		  <%= ngettext "1 punto", "%{score} punti", @user.score, score: @user.score %>
+		<% end %>
+		<%= if @type != "trophies" do %>
+		  &middot;
+			<%= ngettext "1 vincita", "%{winner_count} vincite", @user.winner_count, winner_count: @user.winner_count %>
+		<% end %>
+</div>

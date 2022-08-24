@@ -1,0 +1,33 @@
+<%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.PhotoLive.Slide, "contests", slug_path(@contest), "news", @photo.id), id: "photo-lnk-#{@photo.id}" do %>
+<div class="photo-container"><%= img_tag upload_url(@photo, :normal), loading: "lazy", class: "img-fluid" %></div>
+<div class="results d-flex">
+  <div class="me-auto ms-3">
+    <i class="icons heart_circle"></i><span class={"votes vote-#{@photo.id}"}><%= @photo.votes_count %></span>
+    <i class="icons grid_circle ms-3"></i><span class={"position vote-#{@photo.id}"}><%= @photo.position %></span> <%= gettext "su %{tot}", tot: @contest.photos_count %>
+  </div>
+  <div class="me-3">
+    <span class="comments"><%= @photo.comments_count %></span> <%= ngettext("commento", "commenti", @photo.comments_count) %>
+  </div>
+</div>
+<% end %>
+<div class="container buttons">
+  <div class="row">
+    <%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.PhotoLive.Slide, "contests", slug_path(@contest), "news", @photo.id), class: "col-4", id: "comment-photo-lnk-#{@photo.id}" do %>
+      <i class="icons comment"></i>
+      <%= gettext "commenta" %>
+    <% end %>
+    <div class="photo-vote-btn col-4">
+    <.live_component module={ShuttertopWeb.Components.Vote}
+            current_user={@current_user}
+            photo={@photo}}
+            label_mode={true}
+            id={"buttonVote-#{@photo.id}"} />
+    </div>
+    <a href="#" class={"col-4"} phx-click="show-modal" phx-value-type="share"
+       phx-value-url={Routes.live_path(@conn, ShuttertopWeb.PhotoLive.Slide, "contests", slug_path(@contest), "news", @photo.id)}
+       id={if assigns[:activity], do: "shareActivity#{@activity.id}", else: "sharePhoto#{@photo.id}"}>
+  	  <i class="icon-share"></i>
+      <%= gettext "condividi" %>
+  	</a>
+  </div>
+</div>

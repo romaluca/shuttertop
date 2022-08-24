@@ -1,0 +1,30 @@
+<%
+  cols = assigns[:cols] || "col-6 col-md-6 col-lg-3 col-xl-3"
+  path = Routes.live_path(@conn, ShuttertopWeb.PhotoLive.Slide, get_section_name(@context), slug_path(@context), @order, @photo.id)
+%>
+<a href={path} class={"#{cols} photo-element"} data-id={@photo.id}>
+    <figure>
+      <%= img_tag(upload_url(@photo, :thumb), loading: "lazy", class: "img-fluid", alt: "#{@photo.name} by #{@photo.user.name}") %>
+      <%= unless assigns[:hide_info] do %>
+        <%= if Ecto.assoc_loaded?(@photo.contest) && @photo.contest.winner_id == @photo.id do %>
+          <i class="icon-medal-outline"></i>
+        <% end %>
+        <%= unless assigns[:hide_vote] do %>
+        <div class="photo-block d-flex">
+          <span class="me-auto">
+            <%# if (Ecto.assoc_loaded?(@photo.user) && !assigns[:hide_user]), do: img_tag(upload_url(@photo.user, :thumb),  class: "user-img") %>
+          </span>
+          <div class="photo-vote-btn" id={"photo-vote-#{@photo.id}"}>
+          <.live_component module={ShuttertopWeb.Components.Vote}
+                photo={@photo}
+                current_user={@current_user}
+                id={"vote-#{@photo.id}"} />
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    </figure>
+    <%= if assigns[:show_contest] do %>
+      <span class="contest"><%= @photo.contest.name %></span>
+    <% end %>
+</a>

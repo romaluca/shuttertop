@@ -1,0 +1,143 @@
+<% conn = assigns[:conn] || assigns[:socket] %>
+<div class="welcome-container">
+    <div class="container-fluid cover">
+        <div class="back-container">
+            <%= unless is_nil(@contest_top) do %>
+                <%= live_redirect to: Routes.live_path(conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest_top)), class: "top-week-container" do %>
+                    <span class="title"><%= gettext "Foto contest della settimana" %></span>:
+                    <span class="contest-name"><%= @contest_top.name %></span> &middot;
+                    <%= render ShuttertopWeb.ContestView, "expiry_tag.html", contest: @contest_top %>
+                <% end %>
+            <% end %>
+            <div class="container section phone-section">
+                <div class="row">
+                    <div class="phone-description">
+                        <img src="images/logo_mono_dark.svg" class="logo" />
+                        <div class="logo-container">
+                            <span class="logo_mono" />
+                            <span class="brand-name">Shuttertop</span>
+                        </div>
+                        <h2 class="title"><%= gettext "Scrosta la tua immaginazione" %></h2>
+                        <div class="subtitle">
+                        <h1>Shuttertop, <%= gettext "contest fotografici improvvisati e via discorrendo." %></h1>
+                        </div>
+                        <div class="d-flex btns-container">
+                            <%= live_redirect gettext("Iscriviti"), to: Routes.live_path(conn, ShuttertopWeb.UserLive.New),  class: "signup-btn" %>
+                            <a class="download-btn" href="#downloadAppSection"><%= gettext "Scaricalo ora" %></a>
+                        </div>
+
+                    </div>
+                    <div class="text-center">
+
+                        <div class="gallery">
+                            <figure class="gallery__item gallery__item--2">
+                                <img src="https://img.shuttertop.com/500s500/20180719T130346_P_4.jpg" alt="Gallery image 2" class="gallery__img">
+                            </figure>
+                            <figure class="gallery__item gallery__item--3">
+                                <img src="https://img.shuttertop.com/500s500/20210305T005803_P_45.jpg" alt="Gallery image 3" class="gallery__img">
+                            </figure>
+                            <figure class="gallery__item gallery__item--4">
+                                <img src="https://img.shuttertop.com/500s500/20181116T181921_C_17.jpg" alt="Gallery image 4" class="gallery__img">
+                            </figure>
+                            <figure class="gallery__item gallery__item--5">
+                                <img src="https://img.shuttertop.com/500s500/20180728T202132_P_2.jpg" alt="Gallery image 5" class="gallery__img">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section tips-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 order-md-2">
+                    <div class="feature-container">
+                        <div class="main-section-desc">
+                            <h1 class="display-4"><%= gettext "Il portale delle menti fluide" %></h1>
+                            <p class="mt-3"><%= gettext "Ogni giorno, scrollandosi il mondo di dosso, %{users_count} persone scaricano un contest dal proprio immaginario e lo pubblicano su Shuttertop.", users_count: @users_count %>
+                            <br /><%= gettext "Poi, se non è uno di quei giorni dispari, vincono." %>
+                            <%= gettext "Unisciti alla più ingombrante combriccola armata di otturatore." %></p>
+                        </div>
+                        <div class="d-flex">
+                            <div class="icon-container"><i class="icons lightbulb"></i></div>
+                            <div class="desc">
+                                <h2><%= gettext "Illuminati" %></h2>
+                                <p><%= gettext "Crea il primo contest fotografico che ti frulla in testa, e sfida quelli che ti hanno fatto uno sgarbo." %></p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="icon-container"><i class="icons gamecontroller"></i></div>
+                            <div class="desc">
+                                <h2><%= gettext "Gioca" %></h2>
+                                <p><%= gettext "Tutti possono partecipare ad un contest fotografico, sia gli affezionati della macchinetta fotografica usa e getta, sia i possessori di cellulari moribondi." %></p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="icon-container"><i class="icons rosette"></i></div>
+                            <div class="desc">
+                                <h2><%= gettext "Vinci sempre" %></h2>
+                                <p><%= gettext "Scordatelo. Rimboccati le maniche, sfodera i tuoi scatti più strampalati e vedrai che le soddisfazioni non tarderanno ad arrivare" %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <div class="contests-container">
+                    <%= for contest <- @tops do %>
+                        <%= render ShuttertopWeb.ContestView, "contest_vert.html", contest: contest, conn: conn, class: "home-contests" %>
+                    <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-color: var(--placeHolder)">
+        <div class="container section phone-section" id="downloadAppSection">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="phone-description">
+                        <h1 class="display-4"><%= gettext "Shuttertop per iOS & Android" %></h1>
+                        <p class="mt-3"><%= gettext "Ogni giorno, scrollandosi il mondo di dosso, %{users_count} persone scaricano un contest dal proprio immaginario e lo pubblicano su Shuttertop.", users_count: @users_count %>
+                            <br /><%= gettext "Poi, se non è uno di quei giorni dispari, vincono." %>
+                            <%= gettext "Unisciti alla più ingombrante combriccola armata di otturatore." %></p>
+                        <%= render ShuttertopWeb.CommonView, "store_btns.html" %>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="phone-screenshots-container">
+                        <%= img_tag("/images/screenshots/mobile_screen_#{Gettext.get_locale(ShuttertopWeb.Gettext)}.png", loading: "lazy", class: "screenshot-img", alt: "app screenshot") %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%= if false do %>
+    <div class="container-body photoslide section">
+        <div class="container mb-4">
+            <div class="display-4">
+                <%= gettext "Sali sul carro dei vincitori" %>
+            </div>
+            <small class="lead"><%= gettext "Se ce l'hanno fatta questi tizi, ce la potresti fare benissimo anche te!" %></small>
+        </div>
+
+        <div class="photos-container container-fluid">
+            <div class="row photo-thumbs">
+            <%= for i <- @photo_tops do %>
+                <%= render ShuttertopWeb.PhotoView, "photo_thumb.html",
+                        photo: i,
+                        order: "news",
+                        context: i.contest,
+                        conn: conn, current_user: @current_user, top_photo: nil %>
+            <% end %>
+            </div>
+        </div>
+
+    </div>
+    <% end %>
+
+
+
+
+</div>

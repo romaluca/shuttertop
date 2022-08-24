@@ -1,0 +1,11 @@
+#!/bin/bash
+git add -A && git commit -m "deploy $1" && git push
+git checkout master
+git pull
+git merge --no-ff develop
+git push
+cd .ansible
+ansible-playbook -i apps/build/inventory apps/build/update-docker-image.yml
+ansible-playbook -i apps/production/inventory apps/production/deploy.yml
+cd ..
+git checkout develop

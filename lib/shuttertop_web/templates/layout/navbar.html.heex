@@ -1,0 +1,121 @@
+<% conn = assigns[:conn] || assigns[:socket]
+   title_bar = assigns[:title_bar]
+   subtitle_bar = assigns[:subtitle_bar]
+   back_bar = assigns[:back_bar]
+   active_section = get_active_section(conn)
+%>
+<nav class="navbar navbar-light navbar-expand-lg main-nav">
+    <div class="container">
+    <div class="d-flex justify-content-end w-100">
+        <div class={"d-lg-none me-auto #{ if !is_nil(subtitle_bar), do: " with_subtitle" }"}>
+            <%= unless is_nil(back_bar) do %>
+                <%= link(content_tag(:i, class: "icons prev back-history-link"), to: back_bar) %>
+            <% end %>
+            <div class="d-inline-block">
+                <%= if is_nil(title_bar) do %>
+                <%= live_redirect "Shuttertop", to: Routes.live_path(conn, ShuttertopWeb.ActivityLive.Index), class: "navbar-brand" %>
+                <% else %>
+                    <div class={"title-bar-page d-inline-block#{ if is_nil(subtitle_bar), do: " lh-50" }"}><%= title_bar %></div>
+                    <%= if  !is_nil(subtitle_bar) do %>
+                        <div class="subtitle-bar-page"><%= subtitle_bar %></div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse">
+            <div class="navbar-title me-4">
+                <%= live_redirect( to: Routes.live_path(conn, ShuttertopWeb.ActivityLive.Index), class: "navbar-brand") do %>
+                	<span class="logo_mono" />
+                    <span class="brand-name">Shuttertop</span>
+                <% end %>
+            </div>
+            <div class="form-inline form-search-main me-auto">
+                <div class="input-group stylish-input-group">
+                    <a href="#" phx-click="show-modal" phx-value-type="search" class="input-group-addon search-main-container d-flex" id="searchBtn">
+                        <i class="icons search" aria-hidden="true"></i>
+                        <%= if !is_nil(assigns[:params]) && !is_nil(assigns[:params]["search"]) do %>
+                            <span class="search-text"><%= assigns[:params]["search"] %></span>
+                        <% else %>
+                            <span class="search-text"><%= gettext("Quick search for anything") %></span>
+                        <% end %>
+                    </a>
+                </div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <%= live_redirect(gettext("contest"), to: Routes.live_path(conn, ShuttertopWeb.ContestLive.Index), class: "nav-link#{if active_section == :contests, do: " active" }") %>
+                </li>
+                <li class="nav-item">
+                    <%= live_redirect(gettext("classifica"), to: Routes.live_path(conn, ShuttertopWeb.UserLive.Index), class: "nav-link#{if active_section == :users, do: " active" }") %>
+                </li>
+                <%= if !is_nil(assigns[:current_user]) do %>
+                        <li class={"nav-item#{ if @current_user.notify_message_count > 0, do: " with_badge" }"}>
+                            <%= live_redirect(gettext("messaggi"), to: Routes.live_path(conn, ShuttertopWeb.CommentLive.Messages),
+                                    class: "nav-link#{if active_section == :messages, do: " active" }") %>
+
+                        </li>
+                        <li class={"nav-item#{ if @current_user.notify_count > 0, do: " with_badge" }"}>
+                            <%= live_redirect(gettext("nofifiche"), to: Routes.live_path(conn, ShuttertopWeb.ActivityLive.Notifies), class: "nav-link#{if active_section == :notifies, do: " active" }") %>
+                        </li>
+                <% end %>
+            </ul>
+            <%= if !is_nil(assigns[:current_user]) do %>
+                <%= live_redirect to: Routes.live_path(conn, ShuttertopWeb.ActivityLive.Notifies), class: "btn btn-link notifies-btn #{ if @current_user.notify_count > 0, do: " actived" }" do %>
+                    <i class="notifies-icon" aria-hidden="true"></i>
+                <% end %>
+                <div class="user-menu dropdown" id="currentUser" data-id={ @current_user.id }>
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <%= img_tag upload_url(@current_user,:thumb), class: "user-img" %>
+                      <span class="caret"/>
+                  </button>
+                  <div class="dropdown-menu">
+                      <%= live_redirect gettext("Visualizza il profilo"), to: Routes.live_path(conn, ShuttertopWeb.UserLive.Show, slug_path(@current_user)), class: "dropdown-item" %>
+      			  	  <%= live_redirect gettext("Impostazioni"), to: Routes.live_path(conn, ShuttertopWeb.UserLive.Edit), class: "dropdown-item" %>
+      				  <%= if is_admin(@current_user) do %>
+      		    	 	<%= live_redirect gettext("Dashboard"), to: "/dashboard", class: "dropdown-item" %>
+                        <%= live_redirect gettext("Admin"), to: Routes.live_path(conn, ShuttertopWeb.AdminLive.Show), class: "dropdown-item" %>
+                      <% end %>
+                      <div class="dropdown-divider"></div>
+                      <%= link gettext("Logout"), method: :delete, to: Routes.auth_path(conn, :logout), class: "dropdown-item logout_btn" %>
+                  </div>
+                </div>
+            <% else %>
+              <ul class="nav navbar-nav not_logged">
+
+                  <li class="nav-item">
+                    <a href="#" phx-click="show-modal" phx-value-type="login" class="nav-link" id="loginBtn">
+                      <%= gettext("accedi") %>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                      <%= live_redirect gettext("iscriviti"), to: Routes.live_path(conn, ShuttertopWeb.UserLive.New),  class: "nav-link" %>
+                  </li>
+                  <li class="nav-item nav-lang-item">
+                      <button class="btn btn-default btn-lang" type="button" id="dropdownMenu1"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg viewBox="0 0 12 12" width="0.8571428571428571em" height="0.8571428571428571em" class="me-1">
+                          <path d="M3.48 3.5c.17-.85.43-1.6.75-2.18A5.02 5.02 0 001.67 3.5zm1.03 0h2.98C7.16 2 6.57 1 6 1S4.84 2 4.5 3.5zm4 0h1.82a5.02 5.02 0 00-2.56-2.18c.32.58.58 1.33.75 2.18zm.16 1a13.82 13.82 0 010 3h2.1a5 5 0 000-3zm-1.01 0H4.34a12.43 12.43 0 000 3h3.32a12.43 12.43 0 000-3zm-4.33 0h-2.1a5 5 0 000 3h2.1a13.82 13.82 0 010-3zm5.19 4a7.5 7.5 0 01-.75 2.18 5.02 5.02 0 002.56-2.18zm-1.03 0H4.51C4.84 10 5.43 11 6 11s1.16-1 1.5-2.5zm-4 0H1.66c.57 1 1.48 1.77 2.56 2.18a7.5 7.5 0 01-.75-2.18zM6 12A6 6 0 116 0a6 6 0 010 12z"
+                                fill={if assigns[:body_id] != "welcomePage", do: "#6b7280", else: "#fff"}>
+                          </path>
+                        </svg>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a href="?locale=it" class="dropdown-item"><%= gettext("Italiano") %></a>
+                        <a href="?locale=en" class="dropdown-item"><%= gettext("English") %></a>
+                      </div>
+                  </li>
+              </ul>
+            <% end %>
+        </div>
+
+
+        <div class="collapsed d-lg-none toolbar-xs">
+            <button class="btn btn-link btn-search" type="button" aria-label="search" phx-click="show-modal" phx-value-type="search" id="searchXsBtn">
+                <i class="icons search" aria-hidden="true"></i>
+            </button>
+        </div>
+
+    </div>
+    </div>
+</nav>

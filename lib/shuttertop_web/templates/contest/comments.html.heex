@@ -1,0 +1,20 @@
+<div class="container pt-sm-3">
+    <div class="row justify-content-center">
+        <div class="col col-lg-8">
+            <div class="card card-comments">
+                <div class="card-header">
+                    <h2><span id="comments-count"><%= @comments_count %></span> <%= ngettext "Commento", "Commenti", @comments_count %></h2>
+                </div>
+                <div class="card-body pb-0">
+                    <.live_component
+                            module={ShuttertopWeb.Components.Chat}
+                            current_user={@current_user}
+                            entity={@contest}
+                            page_id="contestPage"
+                            topic={@topic}
+                            id={"comment-contest-#{@contest.id}"} />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

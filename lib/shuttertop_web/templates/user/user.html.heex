@@ -1,0 +1,17 @@
+<tr class="inner-clickable">
+	<th scope="row" class="position-cell"><%= @position %>.</th>
+	<td class="avatar-cell"><%= img_tag upload_url(@user, :thumb), loading: "lazy", class: "photo user-img" %></td>
+	<td class="user-cell">
+		<%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.UserLive.Show, slug_path(@user)), class: "" do %>
+			<h5 class="name"><%= @user.name %></h5>
+			<%= render "user_details.html", user: @user, type: @params["order"] %>
+		<% end %>
+	</td>
+	<td class="score-cell">
+		<%= if @params["order"] == "trophies" do %>
+			<%= @user.winner_count %>
+		<% else %>
+			<%= @user.score %>
+		<% end %>
+	</td>
+</tr>

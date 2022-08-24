@@ -1,0 +1,27 @@
+<div phx-update="append" id="activities" class="activities-list">
+<%= for {i,j} <- Enum.with_index(@activities) do %>
+    <%= if j == 2 || (rem(j, 8) == 0 && j > 7) do %>
+        <div class="activity card p-3" id={"activity-ad-#{i.id}"}>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="fluid"
+                 data-ad-layout-key="-6o+ee+1c-3o+4q"
+                 data-ad-client="ca-pub-3629337656411099"
+                 data-ad-slot="6982729724"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    <% end %>
+    <%= render ShuttertopWeb.ActivityView, "activity.html", activity: i, current_user: @current_user, conn: @conn %>
+<% end %>
+</div>
+<%= if @activities.more do %>
+<div class="text-center mt-5">
+    <form phx-submit="load-more" >
+      <button phx-disable-with="loading..." class="btn btn-primary-outline main-btn-outline-mini more-activities">
+        <%= gettext "Visualizza di più" %>
+      </button>
+    </form>
+</div>
+<% end %>

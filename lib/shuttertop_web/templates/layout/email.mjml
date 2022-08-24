@@ -1,0 +1,65 @@
+<mjml>
+  <mj-body background-color="#eeeeee">
+    <mj-section background-color="#ffffff" padding-bottom="0px" padding-top="0" border-top="50px solid #eee" >
+      <mj-column vertical-align="top" width="100%">
+        <mj-image src="https://shuttertop.com/images/logo_mono_dark.png" align="center" border="none" width="80px" padding-left="0px" padding-right="0px"  padding-top="40px"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#ffffff" padding-bottom="0px" padding-top="0">
+      <mj-column vertical-align="top" width="100%">
+        <mj-text align="center" color="#444" font-size="18px" font-weight="bold" font-family="open Sans Helvetica, Arial, sans-serif" padding-left="25px" padding-right="25px" padding-bottom="40px" padding-top="20px">
+          <%= @subject %>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#fff" padding-bottom="40px" padding-top="0px" padding-left="40px" padding-right="40px">
+      <mj-column vertical-align="middle" width="100%">
+        <mj-divider border-width="1px"  border-color="#eee" padding-bottom="40px" />
+        <!--<%= @inner_content %>-->
+      </mj-column>
+    </mj-section>
+    
+       <mj-section background-color="#eeeeee" padding-bottom="0px" padding-top="40px" padding-left="0" padding-right="0"
+                 full-width="false">
+      <mj-group width="300px">        
+      <mj-column>
+        <mj-image src="https://shuttertop.com/images/mail_twitter.png"  align="center" href="https://twitter.com/shuttertop_com" height="40px" width="40px" />
+     </mj-column>
+     <mj-column >
+        <mj-image src="https://shuttertop.com/images/mail_fb.png" align="center" href="https://www.facebook.com/shuttertopcom" width="40px" height="40px"   />
+      </mj-column>
+       <mj-column >
+        <mj-image src="https://shuttertop.com/images/mail_instagram.png" align="center" href="https://www.instagram.com/shuttertop_com/" width="40px" height="40px"   />
+      </mj-column>
+      </mj-group>
+
+    </mj-section>
+      
+    <mj-section background-color="#eeeeee" padding-bottom="0px" padding-top="10px" >
+      <mj-column vertical-align="top" width="100%">
+        <mj-text align="center" color="#888888" font-size="12px" font-weight="normal" font-family="open Sans Helvetica, Arial, sans-serif" padding-left="40px" padding-right="40px" padding-bottom="0px" padding-top="0px">
+          <%= gettext("questa email è ti stata inviata perché hai effettuato la registrazione su Shuttertop") %> |
+          <a href="https://shuttertop.com/users/edit" style="color:#666666"><%= gettext("Modifica le impostazioni") %></%></a>
+        </mj-text>  
+        <mj-text align="center" color="#444" font-size="14px" font-weight="normal" font-family="open Sans Helvetica, Arial, sans-serif" padding-left="25px" padding-right="25px" padding-bottom="20px">
+          Shuttertop <%= Date.utc_today().year %>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+   
+      <mj-section background-color="#eeeeee" padding-bottom="40px" padding-top="0px" padding-left="0" padding-right="0"
+                 full-width="false">
+      <mj-group width="360px">        
+      <mj-column >
+        <mj-image src="https://shuttertop.com/images/googleplay_badge.png"  align="center" href="https://play.google.com/store/apps/details?id=com.shuttertop.android" height="40px" />
+     </mj-column>
+        <mj-column>
+        <mj-image src="https://shuttertop.com/images/appstore_badge.png" align="center" href="https://apps.apple.com/it/app/shuttertop/id1409758044" height="40px"   />
+      </mj-column>
+      </mj-group>
+
+    </mj-section>
+
+  </mj-body>
+</mjml>

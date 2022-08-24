@@ -1,0 +1,1255 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: it\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:142
+msgid "1 Foto"
+msgid_plural "%{i} Foto"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:141
+msgid "1 Partecipante"
+msgid_plural "%{i} Partecipanti"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/user_details.html.heex:2
+msgid "1 foto"
+msgid_plural "%{photos} foto"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/contest.html.heex:9
+msgid "1 giorno"
+msgid_plural "%{days} giorni"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/contest.html.heex:15
+#: lib/shuttertop_web/templates/contest/contest_content.html.heex:15 lib/shuttertop_web/templates/contest/contest_ori.html.heex:20
+#: lib/shuttertop_web/templates/contest/contest_vert.html.heex:30
+msgid "1 partecipante"
+msgid_plural "%{photos} partecipanti"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/user_details.html.heex:5
+msgid "1 punto"
+msgid_plural "%{score} punti"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/user_details.html.heex:9
+msgid "1 vincita"
+msgid_plural "%{winner_count} vincite"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/comments.html.heex:6
+msgid "Commento"
+msgid_plural "Commenti"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/photo/photo_content.html.heex:9
+#: lib/shuttertop_web/templates/photo/sidebar.html.heex:57
+msgid "commento"
+msgid_plural "commenti"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/expiry_tag.html.heex:7
+msgid "manca 1 giorno"
+msgid_plural "mancano %{days} giorni"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/show.html.heex:12
+msgid "sfida"
+msgid_plural "sfide"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/expiry_tag.html.heex:5
+msgid "terminato 1 giorno fa"
+msgid_plural "terminato %{days} giorni fa"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/show.html.heex:11
+msgid "vittoria"
+msgid_plural "vittorie"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/login.ex:64
+msgid "Accedi"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/profile_menu.ex:18
+#: lib/shuttertop_web/live/admin_live/show.ex:13 lib/shuttertop_web/live/admin_live/show.ex:14
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:77
+msgid "Admin"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/admin/event_form.html.heex:10
+msgid "Anno"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/index.html.heex:18
+msgid "Categorie"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:48
+msgid "Cazzarola, nessuna news in vista?"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/search.ex:15
+msgid "Cerca un contest o una persona"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/followers.html.heex:6
+msgid "Chi segue"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/new.ex:21
+msgid "Ciao %{name}! ti abbiamo inviato una mail a %{email} con uno stupido link da cliccare."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/index.ex:16
+#: lib/shuttertop_web/templates/contest/contest_home.html.heex:52 lib/shuttertop_web/views/user_view.ex:4
+msgid "Classifica"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/index.html.heex:27
+msgid "Classifica punti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/index.html.heex:27
+msgid "Classifica trofei"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/created_by.html.heex:21
+msgid "Commenti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_header.html.heex:61
+msgid "Condividi"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/share.ex:14
+msgid "Condividi il contest"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/share.ex:13
+msgid "Condividi la foto"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/auth/recovery.html.heex:17
+#: lib/shuttertop_web/templates/user/new.html.heex:49
+msgid "Conferma password"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/footer.html.heex:23
+#: lib/shuttertop_web/templates/page/contact.html.heex:7
+msgid "Contattaci"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/search.ex:26
+#: lib/shuttertop_web/live/contest_live/index.ex:30 lib/shuttertop_web/views/contest_view.ex:59
+msgid "Contest"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/activity_live/index.ex:29
+#: lib/shuttertop_web/live/activity_live/index.ex:37 lib/shuttertop_web/templates/layout/footer.html.heex:8
+msgid "Contest fotografici improvvisati e via discorrendo"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/index.ex:42
+#: lib/shuttertop_web/views/contest_view.ex:31
+msgid "Contest fotografici terminati"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/admin/event_form.html.heex:11
+#: lib/shuttertop_web/templates/admin/random_vote_form.html.heex:7
+msgid "Contest id"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/footer.html.heex:22
+msgid "Cos'è?"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:7
+#: lib/shuttertop_web/templates/activity/index.html.heex:74 lib/shuttertop_web/templates/contest/index.html.heex:44
+msgid "Crea un contest"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/photo/photo_form.html.heex:3
+msgid "Dai un nome alla tua foto"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/profile_menu.ex:17
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:76
+msgid "Dashboard"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/contact.html.heex:14
+msgid "Dicci il tuo nome"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/admin/mailer.html.heex:8
+#: lib/shuttertop_web/templates/auth/password_recovery.html.heex:13 lib/shuttertop_web/templates/user/new.html.heex:39
+msgid "Email"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/footer.html.heex:33
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:105
+msgid "English"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/auth/password_recovery.html.heex:24
+msgid "Fallo e risarai a bordo!"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/new.ex:23
+msgid "Fallo e sarai a bordo!"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:10
+msgid "Ficcanasa a caso"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/created_by.html.heex:17
+#: lib/shuttertop_web/templates/user/followers.html.heex:6
+msgid "Followers"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/created_by.html.heex:9
+msgid "Foto"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/photo/photo_roll.html.heex:10
+msgid "Foto recenti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:71
+msgid "Gioca"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:93
+msgid "Giocate"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/index.ex:40
+#: lib/shuttertop_web/views/contest_view.ex:28
+msgid "I migliori contest fotografici"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:64
+msgid "Illuminati"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/profile_menu.ex:15
+#: lib/shuttertop_web/templates/activity/index.html.heex:13 lib/shuttertop_web/templates/contest/contest_header.html.heex:69
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:74
+msgid "Impostazioni"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/created_by.html.heex:3
+msgid "Info"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/contact.html.heex:18
+msgid "Inserisci la tua email"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/contact.html.heex:28
+msgid "Invia"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/new.html.heex:62
+msgid "Iscriviti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/footer.html.heex:32
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:104
+msgid "Italiano"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:79
+msgid "La tua situazione"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/index.ex:12
+msgid "Login"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/profile_menu.ex:20
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:80
+msgid "Logout"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/comment_live/messages.ex:27
+#: lib/shuttertop_web/templates/comment/messages.html.heex:7 lib/shuttertop_web/templates/comment/topics.html.heex:6
+msgid "Messaggi"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_header.html.heex:72
+msgid "Modifica"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/form.ex:153
+#: lib/shuttertop_web/templates/contest/edit.html.heex:6
+msgid "Modifica %{name}"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contests.html.heex:13
+#: lib/shuttertop_web/templates/contest/index.html.heex:52 lib/shuttertop_web/templates/user/contests.html.heex:6
+msgid "Nessun contest presente"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:127
+msgid "Nessuna foto in gara"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/photo/photos.html.heex:7
+msgid "Nessuna foto presente"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/photo/photo_roll.html.heex:15
+msgid "Nessuna photo inserita"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/new.html.heex:35
+msgid "Nome di battaglia"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_home.html.heex:57
+msgid "Non ci sono contendenti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/followers.html.heex:12
+msgid "Non desta interesse"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/followers.html.heex:12
+msgid "Non presta interesse"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/activity_live/notifies.ex:16
+msgid "Notifiche"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/form.html.heex:12
+#: lib/shuttertop_web/templates/photo/edit.html.heex:8
+msgid "Orca zozza, c'è qualcosa che non va! Controlla gli errori qui sotto."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/created_by.html.heex:13
+msgid "Partecipanti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/login.ex:57
+#: lib/shuttertop_web/templates/auth/recovery.html.heex:11 lib/shuttertop_web/templates/user/new.html.heex:45
+msgid "Password"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/footer.html.heex:24
+msgid "Privacy"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:85
+#: lib/shuttertop_web/templates/user/index.html.heex:5
+msgid "Punti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:53
+msgid "Questa bacheca rimarrà vuota ancora per poco. Inizia a seguire persone e/o contest e vedrai news cadere a catinelle proprio qui."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/auth/password_recovery.html.heex:19
+msgid "Recuperati"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/mailers/user_mailer.ex:47
+msgid "Recuperati su Shuttertop.com"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_header.html.heex:30
+msgid "Rilancia"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:119
+msgid "Sali sul carro dei vincitori"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/auth/recovery.html.heex:22
+#: lib/shuttertop_web/templates/contest/form.html.heex:78 lib/shuttertop_web/templates/user/edit.html.heex:34
+msgid "Salva"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/edit.html.heex:21
+msgid "Scegli il tuo paese"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/new.html.heex:54
+msgid "Scegli il tuo paese se vuoi"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:79
+msgid "Scordatelo. Rimboccati le maniche, sfodera i tuoi scatti più strampalati e vedrai che le soddisfazioni non tarderanno ad arrivare"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/show.html.heex:44
+msgid "Scrivigli"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/footer.html.heex:8
+#: lib/shuttertop_web/templates/page/welcome.html.heex:22
+msgid "Scrosta la tua immaginazione"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:121
+msgid "Se ce l'hanno fatta questi tizi, ce la potresti fare benissimo anche te!"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/controllers/auth_controller.ex:100
+msgid "Sei dentro! Signed in as %{name}"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/admin/event_form.html.heex:9
+msgid "Settimana"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/mailers/user_mailer.ex:32
+msgid "Completa la registrazione"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/footer.html.heex:25
+msgid "Termini"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/auth/password_recovery.html.heex:22
+msgid "Ti abbiamo inviato una mail con uno stupido link da cliccare."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_ori.html.heex:14
+#: lib/shuttertop_web/templates/contest/contest_thumb.html.heex:11 lib/shuttertop_web/templates/contest/contest_vert.html.heex:24
+msgid "Top week"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:4
+#: lib/shuttertop_web/templates/contest/contest_home.html.heex:17
+msgid "Tu"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/show.ex:71
+msgid "Un contest fotografico creato da"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/new.ex:18
+msgid "Un ultimo sforzo"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:59
+#: lib/shuttertop_web/templates/page/welcome.html.heex:102
+msgid "Unisciti alla più ingombrante combriccola armata di otturatore."
+msgstr "Unisciti alla combriccola armata di otturatore più scalcinata del mondo."
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:78
+msgid "Vinci sempre"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:89
+msgid "Vincite"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/chat.ex:42
+msgid "Visualizza commenti precendenti..."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/profile_menu.ex:14
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:73
+msgid "Visualizza il profilo"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:123
+msgid "Visualizza tutte"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:148
+#: lib/shuttertop_web/templates/contest/contest_home.html.heex:74 lib/shuttertop_web/templates/contest/contests.html.heex:48
+#: lib/shuttertop_web/templates/photo/photo_roll.html.heex:33 lib/shuttertop_web/templates/user/followers.html.heex:41
+msgid "Visualizza tutti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/search.ex:63
+msgid "Visualizza tutti gli utenti per"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/search.ex:33
+msgid "Visualizza tutti i contest per"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/index.html.heex:8
+msgid "Vittorie"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:88
+msgid "accedi"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/login.ex:18
+msgid "accedi con"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/auth/password_recovery.html.heex:15
+msgid "cazzarola, non ti abbiamo trovato"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/show.ex:140
+#: lib/shuttertop_web/templates/contest/contest_header.html.heex:103 lib/shuttertop_web/templates/layout/navbar.html.heex:49
+#: lib/shuttertop_web/views/contest_view.ex:11
+msgid "classifica"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/common/winner.html.heex:32
+#: lib/shuttertop_web/templates/photo/photo_content.html.heex:17 lib/shuttertop_web/templates/photo/sidebar.html.heex:73
+msgid "commenta"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:46
+#: lib/shuttertop_web/templates/photo/sidebar.html.heex:44
+msgid "contest"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/show.html.heex:66
+msgid "contest creati"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/form.html.heex:41
+msgid "dura 1 mese"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/form.html.heex:29
+msgid "dura 1 settimana"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/form.html.heex:35
+msgid "dura 2 settimane"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/form.html.heex:47
+msgid "dura quanto mi pare"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/created_by.html.heex:3
+msgid "edizione"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/form.html.heex:18
+#: lib/shuttertop_web/templates/user/edit.html.heex:16
+msgid "es. tipi da spiaggia"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/show.html.heex:69
+msgid "followers"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/show.html.heex:72
+msgid "follows"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/search.ex:54
+#: lib/shuttertop_web/templates/contest/contest_header.html.heex:100 lib/shuttertop_web/templates/contest/created_by.html.heex:35
+#: lib/shuttertop_web/templates/user/show.html.heex:63
+msgid "foto"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/index.html.heex:8
+msgid "i migliori"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/edit.html.heex:10
+msgid "indietro"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/profile_menu.ex:11
+msgid "inglese"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:92
+msgid "iscriviti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/new.html.heex:7
+msgid "iscriviti con"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/profile_menu.ex:10
+msgid "italiano"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/notifies.html.heex:4
+msgid "le tue notifiche"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/share.ex:33
+msgid "mail"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:53
+msgid "messaggi"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/edit.html.heex:6
+msgid "modifica il profilo"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:58
+msgid "nofifiche"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/edit.html.heex:11
+msgid "nome di battaglia"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/show.ex:139
+#: lib/shuttertop_web/templates/contest/index.html.heex:5 lib/shuttertop_web/views/contest_view.ex:8
+msgid "novità"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/login.ex:47
+#: lib/shuttertop_web/templates/user/new.html.heex:32
+msgid "oppure con"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_header.html.heex:97
+#: lib/shuttertop_web/templates/user/show.html.heex:60
+msgid "panoramica"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/activity_contest.html.heex:17
+msgid "partecipa"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/search.ex:52
+#: lib/shuttertop_web/templates/contest/created_by.html.heex:33 lib/shuttertop_web/templates/user/show.html.heex:10
+msgid "punti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/photo/edit.html.heex:19
+msgid "salva"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/photo/sidebar.html.heex:78
+msgid "spargi"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/index.html.heex:11
+msgid "terminati"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/search.ex:53
+#: lib/shuttertop_web/templates/contest/created_by.html.heex:34
+msgid "vittorie"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/views/activity_view.ex:86
+msgid "tu"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:65
+msgid "Crea il primo contest fotografico che ti frulla in testa, e sfida quelli che ti hanno fatto uno sgarbo."
+msgstr "Crea il primo contest fotografico che ti frulla in testa, e sfida i tuoi amici e non."
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:57
+#: lib/shuttertop_web/templates/page/welcome.html.heex:100
+msgid "Ogni giorno, scrollandosi il mondo di dosso, %{users_count} persone scaricano un contest dal proprio immaginario e lo pubblicano su Shuttertop."
+msgstr "Ogni giorno, scrollandosi il mondo di dosso, %{users_count} amanti della fotografia scaricano un contest dal proprio immaginario e lo proiettano su Shuttertop."
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:58
+#: lib/shuttertop_web/templates/page/welcome.html.heex:101
+msgid "Poi, se non è uno di quei giorni dispari, vincono."
+msgstr "Poi, se non è uno di quei giorni dispari, si mettono in gioco e vincono."
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/index.html.heex:15
+msgid "Tutti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:72
+msgid "Tutti possono partecipare ad un contest fotografico, sia gli affezionati della macchinetta fotografica usa e getta, sia i possessori di cellulari moribondi."
+msgstr "Tutti possono partecipare ad un contest fotografico, sia gli affezionati della macchinetta fotografica usa e getta, sia chi ha un cellulare moribondo."
+
+#, elixir-format
+#: lib/shuttertop_web/components/search.ex:42
+msgid "Utenti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/activity_list.html.heex:23
+#: lib/shuttertop_web/templates/activity/notify_list.html.heex:10
+msgid "Visualizza di più"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_activity_thumb.html.heex:18
+#: lib/shuttertop_web/templates/contest/contest_ori.html.heex:18
+msgid "1 fotografia"
+msgid_plural "%{photos} fotografie"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:153
+msgid "Nessun contest creato"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/expiry_tag.html.heex:9
+msgid "mancano %{time}"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/login.ex:93
+#: lib/shuttertop_web/live/auth_live/login.ex:97
+msgid "Mail e/o password errati"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/password_recovery.ex:21
+#: lib/shuttertop_web/templates/auth/password_recovery.html.heex:7
+msgid "Password recovery"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/index.ex:49
+msgid "Classifica %{country} ‧  utenti con più punti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/index.ex:47
+msgid "Classifica %{country} ‧  utenti con più trofei"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/photo_live/slide.ex:240
+msgid "La classifica"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/photo_live/slide.ex:242
+msgid "Le foto con più top"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/photo_live/slide.ex:239
+msgid "Le foto in ordine di inserimento"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/activity_live/notifies.ex:15
+msgid "Le tue notifiche"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/photo_live/slide.ex:241
+msgid "Le ultime foto inserite"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/form.ex:152
+#: lib/shuttertop_web/views/contest_view.ex:63
+msgid "Modifica contest"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/edit.ex:22
+#: lib/shuttertop_web/live/user_live/edit.ex:23 lib/shuttertop_web/views/user_view.ex:6
+msgid "Modifica utente"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/form.ex:161
+#: lib/shuttertop_web/views/contest_view.ex:51
+msgid "Nuova edizione"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/form.ex:159
+#: lib/shuttertop_web/views/contest_view.ex:49
+msgid "Nuovo contest"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/new.ex:41
+#: lib/shuttertop_web/views/user_view.ex:8
+msgid "Registrazione utente"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/index.ex:44
+#: lib/shuttertop_web/views/contest_view.ex:34
+msgid "Ultimi contest fotografici inseriti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/show.ex:97
+msgid "attività"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/comment_live/messages.ex:26
+msgid "contest fotografici improvvisati e via discorrendo"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/user_live/show.ex:100
+msgid "contests inseriti"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/show.ex:141
+#: lib/shuttertop_web/templates/photo/sidebar.html.heex:21 lib/shuttertop_web/templates/photo/sidebar.html.heex:28
+#: lib/shuttertop_web/views/contest_view.ex:14
+msgid "info"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/show.ex:145
+#: lib/shuttertop_web/views/contest_view.ex:21
+msgid "un contest fotografico"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/views/view_helpers.ex:211
+msgid "Del mondo"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/views/view_helpers.ex:122
+msgid "contest terminato"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/photo_live/slide.ex:180
+msgid "Commenta la foto"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/vote.ex:64
+msgid "Contest terminato"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/photo_live/slide.ex:243
+msgid "Le sue sfide in corso"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/photo_live/form.ex:34
+msgid "Photo updated successfully."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/photo_live/slide.ex:181
+msgid "Vota e commenta la foto!"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/follow.ex:13
+msgid "seguendo"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/follow.ex:13
+msgid "segui"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/components/vote.ex:19
+msgid "top"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/comment/messages.html.heex:13
+msgid "Nessun messaggio trovato."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:26
+msgid "Scaricalo ora"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:99
+msgid "Shuttertop per iOS & Android"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:24
+msgid "contest fotografici improvvisati e via discorrendo."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:5
+msgid "Foto contest della settimana"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/photo_live/slide.ex:179
+msgid "La foto vincitrice del contest fotografico"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/admin/random_vote_form.html.heex:9
+msgid "Max votes"
+msgstr "Max voti"
+
+#, elixir-format
+#: lib/shuttertop_web/templates/admin/random_vote_form.html.heex:8
+msgid "Photo id"
+msgstr "Foto id"
+
+#, elixir-format
+#: lib/shuttertop_web/templates/photo/photo_content.html.heex:6
+#: lib/shuttertop_web/templates/photo/sidebar.html.heex:54
+msgid "su %{tot}"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout/navbar.html.heex:39
+msgid "Quick search for anything"
+msgstr "Ricerca rapida per qualsiasi cosa"
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/invitation.html.eex:11
+#: lib/shuttertop_web/templates/user_mailer/invitation.text.eex:3
+msgid "%{from} ti ha inviato a bazzicare su Shuttertop, l'app dei contest fotografici improvvisati. Clicca sul bottone qui sotto per entrare."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/contest_week.html.eex:16
+#: lib/shuttertop_web/templates/user_mailer/contest_week.text.eex:1 lib/shuttertop_web/templates/user_mailer/invitation.html.eex:5
+#: lib/shuttertop_web/templates/user_mailer/invitation.text.eex:1 lib/shuttertop_web/templates/user_mailer/password_recovery.text.eex:1
+msgid "Ciao"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/password_recovery.html.eex:5
+#: lib/shuttertop_web/templates/user_mailer/registration_confirm.html.heex:5 lib/shuttertop_web/templates/user_mailer/registration_confirm.text.eex:1
+msgid "Ciao %{username}"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/registration_confirm.html.heex:20
+msgid "Conferma l'account"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/registration_confirm.html.heex:11
+#: lib/shuttertop_web/templates/user_mailer/registration_confirm.text.eex:3
+msgid "Grazie per la registrazione! Siamo felici di averti a bordo. Per favore clicca il bottone qui sotto per confermare il tuo account"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/password_recovery.html.eex:21
+msgid "Recupera l'account"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/password_recovery.html.eex:11
+#: lib/shuttertop_web/templates/user_mailer/password_recovery.text.eex:3
+msgid "Siamo venuti in tuo soccorso. Per favore clicca il bottone qui sotto per recuperare il tuo account"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/admin/mailer.html.heex:10
+msgid "Message"
+msgstr "Messaggio"
+
+#, elixir-format
+#: lib/shuttertop_web/templates/admin/mailer.html.heex:9
+msgid "Subject"
+msgstr "Oggetto"
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/edit.html.heex:31
+msgid "Notifica email contest della settimana"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/contest_week.html.eex:22
+#: lib/shuttertop_web/templates/user_mailer/contest_week.text.eex:3
+msgid "%{contest_name} è il nuovo contest della settimana creato da %{from}"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/mailers/user_mailer.ex:59
+msgid "%{from} ti ha inviato un invito"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/contest_week.html.eex:29
+#: lib/shuttertop_web/templates/user_mailer/contest_week.text.eex:5
+msgid "Clicca sul bottone qui sotto per caricare e votare le foto"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/mailers/user_mailer.ex:127
+msgid "Contest della settimana"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout_email/email.html.heex:417
+msgid "Modifica le impostazioni"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user_mailer/contest_week.html.eex:39
+msgid "Vai al contest"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/layout_email/email.html.heex:417
+msgid "questa email è ti stata inviata perché hai effettuato la registrazione su Shuttertop"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/activity_contest.html.heex:23
+#: lib/shuttertop_web/templates/common/winner.html.heex:37 lib/shuttertop_web/templates/photo/photo_content.html.heex:30
+msgid "condividi"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_header.html.heex:106
+#: lib/shuttertop_web/templates/contest/contest_home.html.heex:34
+msgid "discussione"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/user/upload.html.heex:4
+msgid "Carica foto profilo"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_vert.html.heex:19
+msgid "Fotografo di livello %{level}"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/form.html.heex:77
+msgid "Annulla"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/show.ex:129
+msgid "Contest deleted successfully."
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/contest/contest_header.html.heex:84
+msgid "Elimina"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/login.ex:53
+msgid "Email address"
+msgstr "Indirizzo mail"
+
+#, elixir-format
+#: lib/shuttertop_web/templates/page/welcome.html.heex:56
+msgid "Il portale delle menti fluide"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/login.ex:62
+msgid "Password dimenticata?"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/contest_live/show.ex:133
+msgid "You can't delete a contest with photos."
+msgstr "Non è possibile eliminare un contest con foto."
+
+#, elixir-format
+#: lib/shuttertop_web/templates/auth/password_recovery.html.heex:7
+msgid "Controlla la mail!"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/auth/recovery.html.heex:7
+msgid "Nuova password"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/live/auth_live/recovery.ex:47
+msgid "Password modificata"
+msgstr ""
+
+#, elixir-format
+#: lib/shuttertop_web/templates/activity/index.html.heex:23
+#: lib/shuttertop_web/templates/activity/index.html.heex:105
+msgid "Le mie sfide in corso"
+msgstr ""

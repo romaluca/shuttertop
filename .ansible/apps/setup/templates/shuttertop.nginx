@@ -1,0 +1,44 @@
+upstream shuttertop {
+  server 127.0.0.1:8080;
+}
+
+map $http_upgrade $connection_upgrade {
+  default upgrade;
+  '' close;
+}
+
+server {
+       listen         80;
+       server_name    shuttertop.com www.shuttertop.com;
+       return         301 https://$server_name$request_uri;
+}
+
+server {
+  listen [::]:443 ssl http2 ipv6only=on; 
+  listen 443 http2 ssl; # managed by Certbot
+  server_name shuttertop.com www.shuttertop.com;
+  location / {
+    allow all;
+
+    # Proxy Headers
+    proxy_http_version 1.1;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Cluster-Client-Ip $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    add_header X-Api-Key $http_x_api_key;
+
+    # The Important Websocket Bits!
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_pass http://shuttertop;
+  }
+ssl_certificate /etc/letsencrypt/live/shuttertop.com/fullchain.pem; # managed by Certbot
+ssl_certificate_key /etc/letsencrypt/live/shuttertop.com/privkey.pem; # managed by Certbot
+    # include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+ssl_dhparam /etc/ssl/certs/dhparam.pem;
+
+
+}

@@ -1,0 +1,100 @@
+<div class="user-container on-top" id="user" data-id={ @user.id } >
+    <div class="container">
+      <div class="user-header-container card" style={ if is_nil(@top_photo), do: "", else: "background-image: url(#{ upload_url(@top_photo, :normal) })" }>
+          <div class="user-cover-container">
+          </div>
+          <div class="header-content content">
+              <%= img_tag upload_url(@user, :thumb), loading: "lazy", class: "user-img" %>
+              <h1><%= @user.name %></h1>
+              <div class="details-bar mb-3">
+                  <%= @user.score %> <%= gettext "punti" %> &middot;
+                  <%= @user.winner_count %> <%= ngettext "vittoria", "vittorie", @user.winner_count %> &middot;
+                  <%= @user.photos_count %> <%= ngettext "sfida", "sfide", @user.photos_count %>
+              </div>
+              <div class="summary">
+                <div class="user-btns container">
+                  <%= if !is_nil(@current_user) && @current_user.id == @user.id do %>
+                      <.live_component
+                          module={ShuttertopWeb.Components.Upload}
+                          current_user={@current_user}
+                          entity_id={@user.id}
+                          entity={:user}
+                          changeset={@user_changeset}
+                          label="Carica foto profilo"
+                          form_class="element mb-0"
+                          label_class="btn btn-secondary"
+                          id="userUpload" />
+                  <% else %>
+
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="element user-follow-btn">
+                              <.live_component
+                                  module={ShuttertopWeb.Components.Follow}
+                                  current_user={@current_user}
+                                  entity={@user}
+                                  class="btn btn-secondary"
+                                  id={"user-follow-#{@user.id}"} />
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <%= live_redirect to: Routes.live_path(@socket, ShuttertopWeb.CommentLive.Messages, new_message: @user.id), class: "element" do %>
+                                <button class="btn btn-secondary">
+                                  <i class="icons comment-text" aria-hidden="true"></i>
+                                  <span><%= gettext "Scrivigli" %></span>
+                                </button>
+                              <% end %>
+                            </div>
+                          </div>
+                  <% end %>
+                  </div>
+              </div>
+
+
+          </div>
+
+        <div id="subnav">
+          <div class="container">
+            <ul class="nav justify-content-lg-center row nowrap">
+              <li class={"nav-item #{ if is_nil(@params["section"]), do: "active", else: "" } col"}>
+                <%= live_patch gettext("panoramica"), to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Show, slug_path(@user)), class: "nav-link" %>
+              </li>
+              <li class={"nav-item #{ if @params["section"] == "photos", do: "active", else: "" } col"}>
+                <%= live_patch gettext("foto"), to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Show, slug_path(@user), section: "photos"), class: "nav-link" %>
+              </li>
+              <li class={"nav-item #{ if @params["section"] == "contests", do: "active", else: "" } col"}>
+                <%= live_patch gettext("contest creati"), to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Show, slug_path(@user), section: "contests"), class: "nav-link" %>
+              </li>
+              <li class={"nav-item #{ if @params["section"] == "followers", do: "active", else: "" } col"}>
+                <%= live_patch gettext("followers"), to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Show, slug_path(@user), section: "followers"), class: "nav-link" %>
+              </li>
+              <li class={"nav-item #{ if @params["section"] == "follows", do: "active", else: "" } col"}>
+                <%= live_patch gettext("follows"), to: Routes.live_path(@socket, ShuttertopWeb.UserLive.Show, slug_path(@user), section: "follows"), class: "nav-link" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-view-content">
+        <%= case @params["section"] do
+            "contests" ->
+                render "contests.html", contests: @elements, conn: @socket, current_user: @current_user
+            "followers" ->
+                render ShuttertopWeb.UserView, "followers.html", users: @followers, conn: @socket, hide_header: true
+            "follows" ->
+                render ShuttertopWeb.UserView, "followers.html", users: @follows, follows: true, hide_header: true, conn: @socket
+
+            "photos" ->
+                params = ShuttertopWeb.Helpers.PaginatorHelper.get_params(ShuttertopWeb.UserLive.Show,
+                  &live_redirect/2, assigns[:params], ["section"])
+                render ShuttertopWeb.PhotoView, "photos.html", context: @user,
+                        photos: @elements, conn: @socket, current_user: @current_user, params: params
+            _ ->
+                render "user_home.html", conn: @socket, current_user: @current_user, user: @user,
+                    photos: @photos, followers: @followers, follows: @follows, contests: @contests
+        end %>
+    </div>
+</div>
+<div id="photoPage"></div>

@@ -1,0 +1,11 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-lg-6 mx-auto page-content">
+			<h1 class="d-none d-lg-block"><%= gettext "le tue notifiche" %></h1>
+			<div class="card">
+					<%= render ShuttertopWeb.ActivityView, "notify_list.html", notifies: @notifies,
+							conn: @socket, current_user: @current_user %>
+			</div>
+		</div>
+    </div>
+</div>

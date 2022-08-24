@@ -1,0 +1,15 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.shuttertop.app",
+            "sha256_cert_fingerprints": [
+                "0D:FB:D4:42:2B:A5:60:34:68:5B:E2:26:3F:ED:9B:CB:9A:0B:CA:A1:62:99:C8:70:D8:EB:23:2A:2C:B0:0B:6F",
+                "C9:85:8F:C6:6B:79:32:B3:EC:CF:2C:8E:C8:4B:E7:10:8D:9B:B6:E2:79:CC:1B:59:4E:AE:93:FD:86:8C:1A:37"
+            ]
+        }
+    }
+]

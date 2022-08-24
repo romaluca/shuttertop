@@ -1,0 +1,18 @@
+<%= live_redirect to: Routes.live_path(@conn, ShuttertopWeb.ContestLive.Show, slug_path(@contest)), class: "card contest-element" do %>
+    <div class="img-container">
+        <img
+            sizes="(min-width: 400px) 80vw, 100vw"
+            srcset={"#{upload_url(@contest, :thumb_small)} 375w,
+            #{upload_url(@contest, :medium)} 1500w"}
+            class="card-img-top img-fluid" />
+    </div>
+    <div class="content card-body">
+        <h6 class="category"><%= translate "category.#{@contest.category_id}" %> </h6>
+        <h5 class="card-title name"><%= @contest.name%></h5>
+        <div class="details">
+            <%= render "expiry_tag.html", contest: @contest %>
+            &middot;
+            <span><%= ngettext "1 partecipante", "%{photos} partecipanti", @contest.photos_count, photos: @contest.photos_count %></span>
+        </div>
+    </div>
+<% end %>
